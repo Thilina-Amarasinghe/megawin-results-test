@@ -121,23 +121,24 @@
       left:0;
       width:100%;
       height:100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.9);
       justify-content:center;
       align-items:center;
       z-index:1000;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
     }
     .modal-content {
       background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-      padding:40px;
-      border-radius:20px;
+      padding:50px;
+      border-radius:25px;
       text-align:center;
-      max-width:500px;
+      max-width:600px;
       width:90%;
       position:relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: modalSlideIn 0.4s ease-out;
-      border: 3px solid #e2e8f0;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      animation: modalSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 4px solid #e2e8f0;
+      overflow: hidden;
     }
     
     /* Mobile responsive for modal */
@@ -177,38 +178,46 @@
       to { transform: translateY(0); opacity: 1; }
     }
     .modal-icon {
-      font-size: 80px;
-      margin-bottom: 20px;
+      font-size: 100px;
+      margin-bottom: 25px;
       display: block;
-      animation: iconBounce 1s ease-in-out infinite alternate;
+      animation: iconBounce 2s ease-in-out infinite;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
     }
     @keyframes iconBounce {
-      from { transform: scale(1) rotate(0deg); }
-      to { transform: scale(1.1) rotate(5deg); }
+      0% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(-5deg); }
+      50% { transform: scale(1.2) rotate(0deg); }
+      75% { transform: scale(1.1) rotate(5deg); }
+      100% { transform: scale(1) rotate(0deg); }
     }
     .modal-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 15px;
-      animation: titleGlow 2s ease-in-out infinite alternate;
-    }
-    @keyframes titleGlow {
-      from { text-shadow: 0 0 5px rgba(0,0,0,0.1); }
-      to { text-shadow: 0 0 20px rgba(255,215,0,0.6); }
-    }
-    .modal-ticket-number {
       font-size: 36px;
       font-weight: 800;
-      padding: 15px 25px;
-      border-radius: 12px;
-      margin: 20px 0;
-      display: inline-block;
-      animation: numberPulse 1.5s ease-in-out infinite;
+      margin-bottom: 20px;
+      animation: titlePulse 2s ease-in-out infinite;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
-    @keyframes numberPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    @keyframes titlePulse {
+      0% { transform: scale(1); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+      50% { transform: scale(1.05); text-shadow: 2px 2px 8px rgba(255,215,0,0.6); }
+      100% { transform: scale(1); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    }
+    .modal-ticket-number {
+      font-size: 48px;
+      font-weight: 900;
+      padding: 20px 35px;
+      border-radius: 15px;
+      margin: 25px 0;
+      display: inline-block;
+      animation: numberFloat 2s ease-in-out infinite;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+    @keyframes numberFloat {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-8px) scale(1.03); }
+      100% { transform: translateY(0px) scale(1); }
     }
     .modal-details {
       margin: 25px 0;
@@ -253,24 +262,53 @@
       box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
     }
     
-    /* Winner styles */
+    /* Winner styles - Enhanced */
     .winner-modal .modal-content {
-      background: linear-gradient(135deg, #fef7cd 0%, #fcd34d 20%, #ffffff 100%);
-      border: 4px solid #fbbf24;
-      box-shadow: 0 20px 60px rgba(251, 191, 36, 0.4);
-      animation: winnerGlow 2s ease-in-out infinite alternate;
+      background: linear-gradient(135deg, #fef7cd 0%, #fcd34d 15%, #f59e0b 30%, #ffffff 100%);
+      border: 6px solid #fbbf24;
+      box-shadow: 0 30px 80px rgba(251, 191, 36, 0.6);
+      animation: winnerGlow 1.5s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    .winner-modal .modal-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: winnerShimmer 3s linear infinite;
+      pointer-events: none;
     }
     @keyframes winnerGlow {
-      from { box-shadow: 0 20px 60px rgba(251, 191, 36, 0.4), 0 0 30px rgba(255, 215, 0, 0.3); }
-      to { box-shadow: 0 25px 70px rgba(251, 191, 36, 0.6), 0 0 50px rgba(255, 215, 0, 0.5); }
+      0% { 
+        box-shadow: 0 30px 80px rgba(251, 191, 36, 0.6), 0 0 40px rgba(255, 215, 0, 0.4);
+        transform: scale(1);
+      }
+      50% { 
+        box-shadow: 0 35px 90px rgba(251, 191, 36, 0.8), 0 0 60px rgba(255, 215, 0, 0.7);
+        transform: scale(1.02);
+      }
+      100% { 
+        box-shadow: 0 30px 80px rgba(251, 191, 36, 0.6), 0 0 40px rgba(255, 215, 0, 0.4);
+        transform: scale(1);
+      }
+    }
+    @keyframes winnerShimmer {
+      0% { transform: translateX(-200%) translateY(-200%) rotate(45deg); }
+      100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
     }
     .winner-modal .modal-title {
-      background: linear-gradient(45deg, #dc2626, #fbbf24, #dc2626);
-      background-size: 200% 200%;
+      background: linear-gradient(45deg, #dc2626, #fbbf24, #dc2626, #f59e0b);
+      background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: titleRainbow 3s linear infinite;
+      animation: titleRainbow 2s linear infinite;
+      font-size: 42px;
+      text-shadow: none;
     }
     @keyframes titleRainbow {
       0% { background-position: 0% 50%; }
@@ -278,23 +316,35 @@
       100% { background-position: 0% 50%; }
     }
     .winner-modal .modal-ticket-number {
-      background: linear-gradient(135deg, #dc2626 0%, #fbbf24 100%);
+      background: linear-gradient(135deg, #dc2626 0%, #fbbf24 50%, #f59e0b 100%);
       color: white;
-      animation: winnerNumberPulse 1s infinite;
-      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+      animation: winnerNumberPulse 1.2s infinite;
+      box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
     @keyframes winnerNumberPulse {
-      0% { transform: scale(1); box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4); }
-      50% { transform: scale(1.08); box-shadow: 0 12px 30px rgba(220, 38, 38, 0.6); }
-      100% { transform: scale(1); box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4); }
+      0% { 
+        transform: translateY(0px) scale(1); 
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5); 
+      }
+      50% { 
+        transform: translateY(-10px) scale(1.08); 
+        box-shadow: 0 20px 50px rgba(220, 38, 38, 0.7); 
+      }
+      100% { 
+        transform: translateY(0px) scale(1); 
+        box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5); 
+      }
     }
     .winner-modal .modal-prize {
-      background: linear-gradient(45deg, #dc2626, #fbbf24, #dc2626, #fbbf24);
-      background-size: 300% 300%;
+      background: linear-gradient(45deg, #dc2626, #fbbf24, #f59e0b, #dc2626);
+      background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: prizeGold 2s linear infinite;
+      animation: prizeGold 2.5s linear infinite;
+      font-size: 40px;
+      text-shadow: none;
     }
     @keyframes prizeGold {
       0% { background-position: 0% 50%; }
@@ -302,24 +352,53 @@
       100% { background-position: 0% 50%; }
     }
     
-    /* Consolation styles */
+    /* Consolation styles - Enhanced Green */
     .consolation-modal .modal-content {
-      background: linear-gradient(135deg, #ecfdf5 0%, #10b981 10%, #ffffff 100%);
-      border: 4px solid #10b981;
-      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
-      animation: consolationGlow 2s ease-in-out infinite alternate;
+      background: linear-gradient(135deg, #dcfce7 0%, #16a34a 15%, #10b981 30%, #ffffff 100%);
+      border: 6px solid #10b981;
+      box-shadow: 0 30px 80px rgba(16, 185, 129, 0.6);
+      animation: consolationGlow 1.5s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    .consolation-modal .modal-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+      animation: consolationShimmer 3s linear infinite;
+      pointer-events: none;
     }
     @keyframes consolationGlow {
-      from { box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4); }
-      to { box-shadow: 0 25px 70px rgba(16, 185, 129, 0.6); }
+      0% { 
+        box-shadow: 0 30px 80px rgba(16, 185, 129, 0.6), 0 0 40px rgba(16, 185, 129, 0.4);
+        transform: scale(1);
+      }
+      50% { 
+        box-shadow: 0 35px 90px rgba(16, 185, 129, 0.8), 0 0 60px rgba(16, 185, 129, 0.7);
+        transform: scale(1.02);
+      }
+      100% { 
+        box-shadow: 0 30px 80px rgba(16, 185, 129, 0.6), 0 0 40px rgba(16, 185, 129, 0.4);
+        transform: scale(1);
+      }
+    }
+    @keyframes consolationShimmer {
+      0% { transform: translateX(-200%) translateY(-200%) rotate(45deg); }
+      100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
     }
     .consolation-modal .modal-title {
-      background: linear-gradient(45deg, #059669, #10b981, #059669);
-      background-size: 200% 200%;
+      background: linear-gradient(45deg, #059669, #10b981, #16a34a, #059669);
+      background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       animation: consolationTitle 2s linear infinite;
+      font-size: 38px;
+      text-shadow: none;
     }
     @keyframes consolationTitle {
       0% { background-position: 0% 50%; }
@@ -327,23 +406,35 @@
       100% { background-position: 0% 50%; }
     }
     .consolation-modal .modal-ticket-number {
-      background: var(--sanasili-gradient);
+      background: linear-gradient(135deg, #059669 0%, #10b981 50%, #16a34a 100%);
       color: white;
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
-      animation: consolationPulse 1.5s ease-in-out infinite;
+      box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5);
+      animation: consolationPulse 1.8s ease-in-out infinite;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     @keyframes consolationPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
+      0% { 
+        transform: translateY(0px) scale(1); 
+        box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5); 
+      }
+      50% { 
+        transform: translateY(-8px) scale(1.04); 
+        box-shadow: 0 20px 50px rgba(16, 185, 129, 0.7); 
+      }
+      100% { 
+        transform: translateY(0px) scale(1); 
+        box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5); 
+      }
     }
     .consolation-modal .modal-prize {
-      background: linear-gradient(45deg, #059669, #10b981, #059669);
-      background-size: 200% 200%;
+      background: linear-gradient(45deg, #059669, #10b981, #16a34a, #059669);
+      background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: consolationPrize 2s linear infinite;
+      animation: consolationPrize 2.2s linear infinite;
+      font-size: 36px;
+      text-shadow: none;
     }
     @keyframes consolationPrize {
       0% { background-position: 0% 50%; }
@@ -351,42 +442,103 @@
       100% { background-position: 0% 50%; }
     }
     
-    /* No win styles */
+    /* No win styles - Enhanced Red */
     .no-win-modal .modal-content {
-      background: linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #dc2626 100%);
-      border: 4px solid #dc2626;
-      box-shadow: 0 20px 60px rgba(220, 38, 38, 0.5);
-      animation: sadShake 0.5s ease-in-out infinite alternate;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 20%, #991b1b 40%, #7f1d1d 100%);
+      border: 6px solid #dc2626;
+      box-shadow: 0 30px 80px rgba(220, 38, 38, 0.8);
+      animation: sadPulse 2s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes sadShake {
-      from { transform: translateX(-2px); }
-      to { transform: translateX(2px); }
+    .no-win-modal .modal-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: sadShimmer 4s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes sadPulse {
+      0% { 
+        transform: scale(1);
+        box-shadow: 0 30px 80px rgba(220, 38, 38, 0.8), 0 0 40px rgba(220, 38, 38, 0.5);
+      }
+      50% { 
+        transform: scale(1.01);
+        box-shadow: 0 35px 90px rgba(220, 38, 38, 0.9), 0 0 60px rgba(220, 38, 38, 0.7);
+      }
+      100% { 
+        transform: scale(1);
+        box-shadow: 0 30px 80px rgba(220, 38, 38, 0.8), 0 0 40px rgba(220, 38, 38, 0.5);
+      }
+    }
+    @keyframes sadShimmer {
+      0% { transform: translateX(-200%) translateY(-200%) rotate(45deg); }
+      100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
     }
     .no-win-modal .modal-title {
       color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      font-size: 32px;
-      animation: sadTitle 2s ease-in-out infinite;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+      font-size: 40px;
+      animation: sadTitleFloat 2.5s ease-in-out infinite;
     }
-    @keyframes sadTitle {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(0.95); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
+    @keyframes sadTitleFloat {
+      0% { transform: translateY(0px); opacity: 1; }
+      25% { transform: translateY(-3px); opacity: 0.9; }
+      50% { transform: translateY(0px); opacity: 0.8; }
+      75% { transform: translateY(-2px); opacity: 0.9; }
+      100% { transform: translateY(0px); opacity: 1; }
     }
     .no-win-modal .modal-ticket-number {
-      background: #374151;
+      background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #6b7280 100%);
       color: white;
-      box-shadow: 0 8px 20px rgba(55, 65, 81, 0.4);
-      border: 2px solid #6b7280;
+      box-shadow: 0 15px 40px rgba(55, 65, 81, 0.6);
+      border: 3px solid #9ca3af;
+      animation: sadNumberFloat 2s ease-in-out infinite;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    @keyframes sadNumberFloat {
+      0% { 
+        transform: translateY(0px) scale(1); 
+        box-shadow: 0 15px 40px rgba(55, 65, 81, 0.6); 
+      }
+      50% { 
+        transform: translateY(-5px) scale(0.98); 
+        box-shadow: 0 10px 30px rgba(55, 65, 81, 0.4); 
+      }
+      100% { 
+        transform: translateY(0px) scale(1); 
+        box-shadow: 0 15px 40px rgba(55, 65, 81, 0.6); 
+      }
     }
     .no-win-modal .modal-details {
-      background: rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.3);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 15px;
+      animation: detailsGlow 3s ease-in-out infinite;
+    }
+    @keyframes detailsGlow {
+      0% { 
+        background: rgba(0,0,0,0.3);
+        border-color: rgba(255,255,255,0.2);
+      }
+      50% { 
+        background: rgba(0,0,0,0.4);
+        border-color: rgba(255,255,255,0.3);
+      }
+      100% { 
+        background: rgba(0,0,0,0.3);
+        border-color: rgba(255,255,255,0.2);
+      }
     }
     .no-win-modal .modal-details div {
       color: white !important;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
   </style>
 </head>
@@ -512,7 +664,7 @@
   </div>
 
   <script>
-    // Prize data
+    // Prize data with proper icons
     const winnerData = {
       '1000001': { rank: '1st Prize', prize: '200,000 LKR', city: 'Colombo', icon: '👑' },
       '1000002': { rank: '2nd Prize', prize: '100,000 LKR', city: 'Galle', icon: '🥈' },
@@ -548,38 +700,58 @@
       modalTicketNumber.textContent = ticket;
       
       if (winnerData[ticket]) {
-        // Winner
+        // Winner - Enhanced with proper icons
         modal.classList.add('winner-modal');
         const data = winnerData[ticket];
         modalIcon.textContent = data.icon;
-        modalTitle.innerHTML = `🎉 සුභ පැතුම්!<br>Congratulations!`;
+        modalTitle.innerHTML = `🎊 සුභ පැතුම්! 🎊<br>🎉 Congratulations! 🎉`;
         modalDetails.innerHTML = `
-          <div class="modal-rank">${data.rank}</div>
-          <div class="modal-prize">${data.prize}</div>
-          <div class="modal-city">📍 ${data.city}</div>
+          <div class="modal-rank" style="font-size: 28px; font-weight: 800; margin-bottom: 15px;">
+            ${data.icon} ${data.rank} ${data.icon}
+          </div>
+          <div class="modal-prize" style="font-size: 44px; font-weight: 900; margin: 15px 0;">
+            💰 ${data.prize} 💰
+          </div>
+          <div class="modal-city" style="font-size: 24px; margin-top: 15px;">
+            📍 ${data.city}
+          </div>
         `;
       } else if (consolationData[ticket]) {
-        // Consolation Prize
+        // Consolation Prize - Enhanced Green
         modal.classList.add('consolation-modal');
         const data = consolationData[ticket];
         modalIcon.textContent = '🎉';
-        modalTitle.innerHTML = `සුභ පැතුම්!<br>Consolation Prize!`;
+        modalTitle.innerHTML = `🎊 සුභ පැතුම්! 🎊<br>🎉 Consolation Prize! 🎉`;
         modalDetails.innerHTML = `
-          <div class="modal-rank">සැනසිලි ත්‍යාගය</div>
-          <div class="modal-prize">10,000 LKR</div>
-          <div class="modal-city">📍 ${data.city}</div>
+          <div class="modal-rank" style="font-size: 26px; font-weight: 700; margin-bottom: 12px;">
+            🏆 සැනසිලි ත්‍යාගය 🏆
+          </div>
+          <div class="modal-prize" style="font-size: 38px; font-weight: 800; margin: 12px 0;">
+            💚 10,000 LKR 💚
+          </div>
+          <div class="modal-city" style="font-size: 22px; margin-top: 12px;">
+            📍 ${data.city}
+          </div>
         `;
       } else {
-        // No Prize
+        // No Prize - Full Red Enhanced
         modal.classList.add('no-win-modal');
-        modalIcon.textContent = '😔';
-        modalTitle.innerHTML = `කණගාටුයි!<br>Sorry!`;
+        modalIcon.textContent = '😢';
+        modalTitle.innerHTML = `😔 කණගාටුයි! 😔<br>💔 Sorry! 💔`;
         modalDetails.innerHTML = `
-          <div style="font-size: 24px; color: white; margin: 20px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
-            Not a winning ticket<br><br>
-            ඔබගේ ටිකට් පත්‍රය මෙවර ත්‍යාගයක් හිමිව නොමැත.<br>
-            Your ticket did not win this time.<br><br>
-            <strong style="font-size: 28px; color: #fbbf24;">Sorry, try next time!</strong>
+          <div style="font-size: 26px; color: white; margin: 25px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); line-height: 1.6;">
+            <div style="font-size: 32px; font-weight: 800; margin-bottom: 20px; color: #fbbf24;">
+              ❌ Not a winning ticket ❌
+            </div>
+            <div style="margin: 15px 0;">
+              ඔබගේ ටිකට් පත්‍රය මෙවර ත්‍යාගයක් හිමිව නොමැත.
+            </div>
+            <div style="margin: 15px 0;">
+              Your ticket did not win this time.
+            </div>
+            <div style="font-size: 30px; font-weight: 900; margin-top: 25px; color: #fcd34d; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+              🔄 Sorry, try next time! 🔄
+            </div>
           </div>
         `;
       }
