@@ -498,13 +498,8 @@
       showPrizeAnimation(scannedTicket);
     }
 
-    // For demonstration purposes - show a random result on page load
-    // In a real implementation, you would remove this and only show based on URL parameter
-    setTimeout(() => {
-      const tickets = ['1000021', '1000002', '1000003', '1000004', '1000005', '304050', '202020', 'invalid'];
-      const randomTicket = tickets[Math.floor(Math.random() * tickets.length)];
-      showPrizeAnimation(randomTicket);
-    }, 1000);
+    // REMOVED the automatic demo code that was causing the issue
+    // This prevents the popup from changing after the initial display
   </script>
 </body>
 </html>
