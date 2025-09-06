@@ -145,102 +145,391 @@
     }
     
     /* Mobile Responsive Styles */
+    @media (max-width: 1024px) {
+      .header h1 {
+        font-size: 2.8rem;
+      }
+      .organization {
+        font-size: 2rem;
+      }
+      .logo-img {
+        height: 180px;
+      }
+      .ticket-img {
+        height: 120px;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+    
     @media (max-width: 768px) {
       body { padding: 5px; }
-      .header-content { flex-direction: column; gap: 15px; }
-      .logo-section, .ticket-section, .title-section { flex: none; width: 100%; }
-      .logo-img { height: 120px; max-width: 200px; }
-      .ticket-img { height: 80px; max-width: 120px; }
-      .header h1 { font-size: 2.2rem; }
-      .organization { font-size: 1.8rem; }
-      .prize-animation { padding: 30px 20px; }
-      .prize-icon { font-size: 60px; }
-      .prize-title { font-size: 26px; }
-      .prize-amount { font-size: 32px; }
-      .prize-rank { font-size: 22px; }
-      .prize-city { font-size: 18px; }
+      .header-content { 
+        flex-direction: column; 
+        gap: 15px; 
+      }
+      .logo-section, .ticket-section, .title-section { 
+        flex: none; 
+        width: 100%; 
+      }
+      .logo-img { 
+        height: 120px; 
+        max-width: 200px; 
+      }
+      .ticket-img { 
+        height: 80px; 
+        max-width: 120px; 
+      }
+      .header h1 { 
+        font-size: 2.2rem; 
+        margin-bottom: 5px;
+      }
+      .organization { 
+        font-size: 1.8rem; 
+      }
+      .prize-animation { 
+        padding: 30px 20px; 
+      }
+      .prize-icon { 
+        font-size: 60px; 
+      }
+      .prize-title { 
+        font-size: 26px; 
+      }
+      .prize-amount { 
+        font-size: 32px; 
+      }
+      .prize-rank { 
+        font-size: 22px; 
+      }
+      .prize-city { 
+        font-size: 18px; 
+      }
+      .close-prize {
+        padding: 12px 30px;
+        font-size: 16px;
+      }
+      
+      /* Table adjustments */
+      .table-container {
+        margin-bottom: 30px;
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        min-width: 500px;
+      }
+      thead th { 
+        padding: 12px 8px; 
+        font-size: 18px; 
+      }
+      tbody td { 
+        padding: 15px 8px; 
+        font-size: 14px; 
+      }
+      .rank-number { 
+        font-size: 16px; 
+      }
+      .winning-number { 
+        padding: 15px 20px; 
+        font-size: 30px; 
+      }
+      .sanasili-number { 
+        padding: 12px 18px; 
+        font-size: 26px; 
+      }
+      .prize { 
+        font-size: 16px; 
+      }
+      .first-prize { 
+        font-size: 18px; 
+      }
+      .city { 
+        font-size: 16px; 
+      }
+      .trophy-icon { 
+        font-size: 22px; 
+      }
+      
+      /* Section title adjustments */
+      .section-title { 
+        font-size: 1.8rem; 
+        flex-direction: column; 
+        gap: 10px; 
+      }
+      .trophy-section { 
+        font-size: 2.5rem; 
+      }
     }
 
     @media (max-width: 480px) {
-      .header h1 { font-size: 1.8rem; }
-      .organization { font-size: 1.4rem; }
-      .logo-img { height: 100px; max-width: 150px; }
-      .ticket-img { height: 60px; max-width: 90px; }
-      .prize-animation { padding: 20px 15px; }
-      .prize-icon { font-size: 50px; }
-      .prize-title { font-size: 22px; }
-      .prize-amount { font-size: 28px; }
-      .prize-rank { font-size: 20px; }
-      .prize-city { font-size: 16px; }
+      .header h1 { 
+        font-size: 1.8rem; 
+      }
+      .organization { 
+        font-size: 1.4rem; 
+      }
+      .logo-img { 
+        height: 100px; 
+        max-width: 150px; 
+      }
+      .ticket-img { 
+        height: 60px; 
+        max-width: 90px; 
+      }
+      .prize-animation { 
+        padding: 20px 15px; 
+      }
+      .prize-icon { 
+        font-size: 50px; 
+      }
+      .prize-title { 
+        font-size: 22px; 
+      }
+      .prize-amount { 
+        font-size: 28px; 
+      }
+      .prize-rank { 
+        font-size: 20px; 
+      }
+      .prize-city { 
+        font-size: 16px; 
+      }
+      .close-prize {
+        padding: 10px 25px;
+        font-size: 14px;
+        margin-top: 15px;
+      }
+      
+      /* Table adjustments for very small screens */
+      thead th { 
+        padding: 10px 6px; 
+        font-size: 16px; 
+      }
+      tbody td { 
+        padding: 12px 6px; 
+        font-size: 12px; 
+      }
+      .winning-number { 
+        padding: 12px 18px; 
+        font-size: 26px; 
+      }
+      .sanasili-number { 
+        padding: 10px 15px; 
+        font-size: 22px; 
+      }
+      .trophy-icon { 
+        font-size: 18px; 
+      }
+      .prize { 
+        font-size: 14px; 
+      }
+      .first-prize { 
+        font-size: 16px; 
+      }
+      .city { 
+        font-size: 14px; 
+      }
+      
+      /* Section title adjustments */
+      .section-title { 
+        font-size: 1.5rem; 
+      }
+      .trophy-section { 
+        font-size: 2rem; 
+      }
     }
-    @keyframes logoGlow { from { transform: scale(1); } to { transform: scale(1.05); } }
-    @keyframes ticketFloat { from { transform: translateY(0px) rotate(-2deg); } to { transform: translateY(-10px) rotate(2deg); } }
-    .header h1 { color:white; font-size:3.5rem; font-weight:700; margin-bottom:0px; text-shadow:2px 2px 4px rgba(0,0,0,0.3); animation:glow 2s ease-in-out infinite alternate; }
-    .organization { color: Yellow; font-size:2.5rem; font-weight:600; font-family:'Georgia', serif; margin-top:5px; text-shadow:2px 2px 4px rgba(0,0,0,0.4); animation:organizationGlow 2.5s ease-in-out infinite alternate; }
-    @keyframes organizationGlow { from { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 15px rgba(255, 215, 0,0.3);} to { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 25px rgba(255, 215, 0,0.6);} }
-    @keyframes glow { from { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.2);} to { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.4);} }
-    .section-title { color:white; font-size:2.5rem; font-weight:600; margin-bottom:20px; text-align:center; text-shadow:1px 1px 3px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; gap:15px; }
-    .trophy-section { font-size:3rem; }
-    .text-section { text-align:center; }
     
-    /* Mobile responsive for section titles */
-    @media (max-width: 768px) {
-      .section-title { font-size: 1.8rem; flex-direction: column; gap: 10px; }
-      .trophy-section { font-size: 2.5rem; }
+    @keyframes logoGlow { 
+      from { transform: scale(1); } 
+      to { transform: scale(1.05); } 
+    }
+    @keyframes ticketFloat { 
+      from { transform: translateY(0px) rotate(-2deg); } 
+      to { transform: translateY(-10px) rotate(2deg); } 
+    }
+    .header h1 { 
+      color:white; 
+      font-size:3.5rem; 
+      font-weight:700; 
+      margin-bottom:0px; 
+      text-shadow:2px 2px 4px rgba(0,0,0,0.3); 
+      animation:glow 2s ease-in-out infinite alternate; 
+    }
+    .organization { 
+      color: Yellow; 
+      font-size:2.5rem; 
+      font-weight:600; 
+      font-family:'Georgia', serif; 
+      margin-top:5px; 
+      text-shadow:2px 2px 4px rgba(0,0,0,0.4); 
+      animation:organizationGlow 2.5s ease-in-out infinite alternate; 
+    }
+    @keyframes organizationGlow { 
+      from { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 15px rgba(255, 215, 0,0.3);} 
+      to { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 25px rgba(255, 215, 0,0.6);} 
+    }
+    @keyframes glow { 
+      from { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.2);} 
+      to { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.4);} 
+    }
+    .section-title { 
+      color:white; 
+      font-size:2.5rem; 
+      font-weight:600; 
+      margin-bottom:20px; 
+      text-align:center; 
+      text-shadow:1px 1px 3px rgba(0,0,0,0.3); 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      gap:15px; 
+    }
+    .trophy-section { 
+      font-size:3rem; 
+    }
+    .text-section { 
+      text-align:center; 
     }
     
-    @media (max-width: 480px) {
-      .section-title { font-size: 1.5rem; }
-      .trophy-section { font-size: 2rem; }
+    .table-container { 
+      background:white; 
+      border-radius:25px; 
+      overflow:hidden; 
+      box-shadow:var(--shadow); 
+      margin-bottom:50px; 
+      backdrop-filter:blur(10px); 
+      position:relative; 
     }
-    .table-container { background:white; border-radius:25px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:50px; backdrop-filter:blur(10px); position:relative; }
-    .table-container::before { content:''; position:absolute; top:0; left:0; right:0; height:6px; background:var(--primary-gradient); }
-    table { width:100%; border-collapse:collapse; }
-    .winners-table thead { background: var(--gold-gradient); }
-    .sanasili-table thead { background: var(--sanasili-gradient); }
-    thead th { text-align:left; padding:20px; font-size:28px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:white; text-shadow:1px 1px 2px rgba(0,0,0,0.2); }
-    tbody tr { transition:all 0.3s ease; border-bottom:1px solid #f0f0f0; }
-    tbody tr:hover { background: linear-gradient(90deg, #f8fafc, #e2e8f0); transform:scale(1.01);}
-    tbody td { padding:22px 20px; font-size:18px; color:#2d3748; vertical-align:middle; }
-    .rank-number { font-weight:700; font-size:22px; color:#667eea; }
-    .winning-number { display:inline-flex; align-items:center; padding:25px 35px; border-radius:12px; font-weight:700; font-size:48px; color:white; background:var(--winner-gradient); box-shadow:0 6px 15px rgba(255,107,107,0.3); text-shadow:1px 1px 2px rgba(0,0,0,0.2); animation:pulse 2s infinite; position:relative; overflow:hidden; }
+    .table-container::before { 
+      content:''; 
+      position:absolute; 
+      top:0; 
+      left:0; 
+      right:0; 
+      height:6px; 
+      background:var(--primary-gradient); 
+    }
+    table { 
+      width:100%; 
+      border-collapse:collapse; 
+    }
+    .winners-table thead { 
+      background: var(--gold-gradient); 
+    }
+    .sanasili-table thead { 
+      background: var(--sanasili-gradient); 
+    }
+    thead th { 
+      text-align:left; 
+      padding:20px; 
+      font-size:28px; 
+      font-weight:700; 
+      text-transform:uppercase; 
+      letter-spacing:1px; 
+      color:white; 
+      text-shadow:1px 1px 2px rgba(0,0,0,0.2); 
+    }
+    tbody tr { 
+      transition:all 0.3s ease; 
+      border-bottom:1px solid #f0f0f0; 
+    }
+    tbody tr:hover { 
+      background: linear-gradient(90deg, #f8fafc, #e2e8f0); 
+      transform:scale(1.01);
+    }
+    tbody td { 
+      padding:22px 20px; 
+      font-size:18px; 
+      color:#2d3748; 
+      vertical-align:middle; 
+    }
+    .rank-number { 
+      font-weight:700; 
+      font-size:22px; 
+      color:#667eea; 
+    }
+    .winning-number { 
+      display:inline-flex; 
+      align-items:center; 
+      padding:25px 35px; 
+      border-radius:12px; 
+      font-weight:700; 
+      font-size:48px; 
+      color:white; 
+      background:var(--winner-gradient); 
+      box-shadow:0 6px 15px rgba(255,107,107,0.3); 
+      text-shadow:1px 1px 2px rgba(0,0,0,0.2); 
+      animation:pulse 2s infinite; 
+      position:relative; 
+      overflow:hidden; 
+    }
     
-    /* Mobile responsive for tables - Smaller but same layout */
-    @media (max-width: 768px) {
-      thead th { padding: 12px 8px; font-size: 18px; }
-      tbody td { padding: 15px 8px; font-size: 14px; }
-      .rank-number { font-size: 16px; }
-      .winning-number { padding: 15px 20px; font-size: 30px; }
-      .sanasili-number { padding: 12px 18px; font-size: 26px; }
-      .prize { font-size: 16px; }
-      .first-prize { font-size: 18px; }
-      .city { font-size: 16px; }
-      .trophy-icon { font-size: 22px; }
-      .table-container { margin-bottom: 35px; }
+    .winning-number::before { 
+      content:''; 
+      position:absolute; 
+      top:-50%; 
+      left:-50%; 
+      width:150%; 
+      height:150%; 
+      background:linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent); 
+      animation:shimmer 3s infinite; 
     }
-    
-    @media (max-width: 480px) {
-      thead th { padding: 10px 6px; font-size: 16px; }
-      tbody td { padding: 12px 6px; font-size: 12px; }
-      .winning-number { padding: 12px 18px; font-size: 26px; }
-      .sanasili-number { padding: 10px 15px; font-size: 22px; }
-      .trophy-icon { font-size: 18px; }
-      .prize { font-size: 14px; }
-      .first-prize { font-size: 16px; }
-      .city { font-size: 14px; }
-      tbody tr:hover { transform: scale(1.01); }
+    @keyframes pulse { 
+      0% { transform:scale(1);} 
+      50% { transform:scale(1.05);} 
+      100% { transform:scale(1);} 
     }
-    .winning-number::before { content:''; position:absolute; top:-50%; left:-50%; width:150%; height:150%; background:linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent); animation:shimmer 3s infinite; }
-    @keyframes pulse { 0% { transform:scale(1);} 50% { transform:scale(1.05);} 100% { transform:scale(1);} }
-    @keyframes shimmer { 0% { transform:translateX(-100%) translateY(-100%) rotate(45deg);} 100% { transform:translateX(100%) translateY(100%) rotate(45deg);} }
-    .sanasili-number { display:inline-flex; align-items:center; padding:18px 25px; border-radius:12px; font-weight:600; font-size:36px; color:white; background:var(--sanasili-gradient); box-shadow:0 4px 10px rgba(16,185,129,0.3); text-shadow:1px 1px 2px rgba(0,0,0,0.2); }
-    .prize { font-weight:700; font-size:22px; color:#059669; }
-    .first-prize { font-size:28px; color:#dc2626; text-shadow:1px 1px 2px rgba(220,38,38,0.3); }
-    .city { font-weight:800; font-size:22px; color:#4a5568; }
-    .trophy-icon { margin-right:10px; font-size:35px; }
-    .winner-row:first-child { background:linear-gradient(90deg, #fef7cd, #fcd34d);}
-    .winner-row:first-child .winning-number { background:linear-gradient(135deg, #dc2626 0%, #fbbf24 100%); animation:goldPulse 2s infinite; font-size:52px; padding:28px 40px; }
-    @keyframes goldPulse { 0% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4); } 50% { transform:scale(1.08); box-shadow:0 8px 20px rgba(220,38,38,0.6);} 100% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4);} }
+    @keyframes shimmer { 
+      0% { transform:translateX(-100%) translateY(-100%) rotate(45deg);} 
+      100% { transform:translateX(100%) translateY(100%) rotate(45deg);} 
+    }
+    .sanasili-number { 
+      display:inline-flex; 
+      align-items:center; 
+      padding:18px 25px; 
+      border-radius:12px; 
+      font-weight:600; 
+      font-size:36px; 
+      color:white; 
+      background:var(--sanasili-gradient); 
+      box-shadow:0 4px 10px rgba(16,185,129,0.3); 
+      text-shadow:1px 1px 2px rgba(0,0,0,0.2); 
+    }
+    .prize { 
+      font-weight:700; 
+      font-size:22px; 
+      color:#059669; 
+    }
+    .first-prize { 
+      font-size:28px; 
+      color:#dc2626; 
+      text-shadow:1px 1px 2px rgba(220,38,38,0.3); 
+    }
+    .city { 
+      font-weight:800; 
+      font-size:22px; 
+      color:#4a5568; 
+    }
+    .trophy-icon { 
+      margin-right:10px; 
+      font-size:35px; 
+    }
+    .winner-row:first-child { 
+      background:linear-gradient(90deg, #fef7cd, #fcd34d);
+    }
+    .winner-row:first-child .winning-number { 
+      background:linear-gradient(135deg, #dc2626 0%, #fbbf24 100%); 
+      animation:goldPulse 2s infinite; 
+      font-size:52px; 
+      padding:28px 40px; 
+    }
+    @keyframes goldPulse { 
+      0% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4); } 
+      50% { transform:scale(1.08); box-shadow:0 8px 20px rgba(220,38,38,0.6);} 
+      100% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4);} 
+    }
   </style>
 </head>
 <body>
@@ -294,25 +583,25 @@
           </tr>
           <tr class="winner-row">
             <td class="rank-number"><p>2<sup>nd</sup> Prize</p></td>
-            <td><span class="winning-number"> 1000002</span></td>
+            <td><span class="winning-number">🥈 1000002</span></td>
             <td class="prize">100,000 LKR</td>
             <td class="city">Galle</td>
           </tr>
           <tr class="winner-row">
             <td class="rank-number"><p>3<sup>rd</sup> Prize</p></td>
-            <td><span class="winning-number"> 1000003</span></td>
+            <td><span class="winning-number">🥉 1000003</span></td>
             <td class="prize">75,000 LKR</td>
             <td class="city">Kurunegala</td>
           </tr>
           <tr class="winner-row">
             <td class="rank-number"><p>4<sup>th</sup> Prize</p></td>
-            <td><span class="winning-number"> 1000004</span></td>
+            <td><span class="winning-number">🏅 1000004</span></td>
             <td class="prize">50,000 LKR</td>
             <td class="city">Jaffna</td>
           </tr>
           <tr class="winner-row">
             <td class="rank-number"><p>5<sup>th</sup> Prize</p></td>
-            <td><span class="winning-number"> 1000005</span></td>
+            <td><span class="winning-number">🏅 1000005</span></td>
             <td class="prize">25,000 LKR</td>
             <td class="city">Anuradhapura</td>
           </tr>
@@ -497,15 +786,6 @@
     if (scannedTicket) {
       showPrizeAnimation(scannedTicket);
     }
-
-    // REMOVED the automatic demo code that was causing the issue
-    // This prevents the popup from changing after the initial display
   </script>
 </body>
 </html>
-
-
-
-
-
-
