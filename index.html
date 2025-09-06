@@ -17,14 +17,14 @@
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
     .container { max-width:1200px; margin:0 auto;}
     .header { text-align:center; margin-bottom:20px; }
-    .header-content { display:flex; justify-content:space-between; align-items:center; max-width:100%; margin:0 auto; position:relative; }
-    .logo-section, .ticket-section { flex:1; display:flex; justify-content:center; align-items:center; }
-    .title-section { flex:2; text-align:center; }
+    .header-content { display:flex; flex-direction: column; justify-content:center; align-items:center; max-width:100%; margin:0 auto; position:relative; }
+    .logo-section, .ticket-section { display:flex; justify-content:center; align-items:center; margin: 10px 0; }
+    .title-section { text-align:center; order: -1; }
     .logo { display:flex; justify-content:center; align-items:center; animation:logoGlow 3s ease-in-out infinite alternate; }
-    .logo-img { width:auto; height:250px; max-width:500px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
+    .logo-img { width:auto; height:150px; max-width:300px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
     .logo-img:hover { transform: scale(1.1); }
     .ticket { display:flex; justify-content:center; align-items:center; animation:ticketFloat 2s ease-in-out infinite alternate; }
-    .ticket-img { width:auto; height:160px; max-width:240px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
+    .ticket-img { width:auto; height:100px; max-width:180px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
     .ticket-img:hover { transform: scale(1.1) rotate(3deg); }
 
     /* Prize Animation Container */
@@ -50,10 +50,10 @@
     }
     .prize-animation {
       background: #fcf523; /* Light yellow background for winners */
-      padding: 40px;
-      border-radius: 20px;
+      padding: 20px;
+      border-radius: 15px;
       text-align: center;
-      max-width: 500px;
+      max-width: 90%;
       width: 90%;
       position: relative;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
@@ -73,8 +73,8 @@
       transform: translateY(0);
     }
     .prize-icon {
-      font-size: 80px;
-      margin-bottom: 20px;
+      font-size: 50px;
+      margin-bottom: 15px;
       display: block;
       color: #f8e71c;
     }
@@ -85,13 +85,13 @@
       color: #e74c3c;
     }
     .prize-title {
-      font-size: 32px;
+      font-size: 24px;
       font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       color: #4a4a4a;
     }
     .prize-amount {
-      font-size: 42px;
+      font-size: 28px;
       font-weight: 800;
       margin: 10px 0;
       color: #e74c3c;
@@ -103,26 +103,26 @@
       100% { transform: scale(1); }
     }
     .prize-rank {
-      font-size: 28px;
+      font-size: 20px;
       font-weight: 700;
       margin-bottom: 10px;
       color: #4a4a4a;
     }
     .prize-city {
-      font-size: 22px;
+      font-size: 18px;
       color: #4a5568;
       margin-top: 10px;
     }
     .close-prize {
-      padding:15px 40px;
+      padding:12px 30px;
       border:none;
       background: #e74c3c;
       color:white;
-      border-radius:12px;
+      border-radius:10px;
       cursor:pointer;
-      font-size:18px;
+      font-size:16px;
       font-weight:600;
-      margin-top:20px;
+      margin-top:15px;
       transition: all 0.3s ease;
     }
     .close-prize:hover {
@@ -134,8 +134,8 @@
     /* Confetti animation */
     .confetti {
       position: absolute;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background-color: #f8e71c;
       opacity: 0;
     }
@@ -145,199 +145,57 @@
     }
     
     /* Mobile Responsive Styles */
-    @media (max-width: 1024px) {
-      .header h1 {
-        font-size: 2.8rem;
+    @media (min-width: 768px) {
+      .header-content {
+        flex-direction: row;
+        justify-content: space-between;
       }
-      .organization {
-        font-size: 2rem;
+      .logo-section, .ticket-section {
+        flex: 1;
+      }
+      .title-section {
+        flex: 2;
+        order: 0;
       }
       .logo-img {
-        height: 180px;
+        height: 200px;
       }
       .ticket-img {
-        height: 120px;
+        height: 140px;
       }
-      .section-title {
-        font-size: 2rem;
+      .prize-animation {
+        padding: 30px;
+        max-width: 500px;
       }
-    }
-    
-    @media (max-width: 768px) {
-      body { padding: 5px; }
-      .header-content { 
-        flex-direction: column; 
-        gap: 15px; 
+      .prize-icon {
+        font-size: 70px;
       }
-      .logo-section, .ticket-section, .title-section { 
-        flex: none; 
-        width: 100%; 
+      .prize-title {
+        font-size: 28px;
       }
-      .logo-img { 
-        height: 120px; 
-        max-width: 200px; 
+      .prize-amount {
+        font-size: 36px;
       }
-      .ticket-img { 
-        height: 80px; 
-        max-width: 120px; 
-      }
-      .header h1 { 
-        font-size: 2.2rem; 
-        margin-bottom: 5px;
-      }
-      .organization { 
-        font-size: 1.8rem; 
-      }
-      .prize-animation { 
-        padding: 30px 20px; 
-      }
-      .prize-icon { 
-        font-size: 60px; 
-      }
-      .prize-title { 
-        font-size: 26px; 
-      }
-      .prize-amount { 
-        font-size: 32px; 
-      }
-      .prize-rank { 
-        font-size: 22px; 
-      }
-      .prize-city { 
-        font-size: 18px; 
-      }
-      .close-prize {
-        padding: 12px 30px;
-        font-size: 16px;
-      }
-      
-      /* Table adjustments */
-      .table-container {
-        margin-bottom: 30px;
-        overflow-x: auto;
-      }
-      table {
-        width: 100%;
-        min-width: 500px;
-      }
-      thead th { 
-        padding: 12px 8px; 
-        font-size: 18px; 
-      }
-      tbody td { 
-        padding: 15px 8px; 
-        font-size: 14px; 
-      }
-      .rank-number { 
-        font-size: 16px; 
-      }
-      .winning-number { 
-        padding: 15px 20px; 
-        font-size: 30px; 
-      }
-      .sanasili-number { 
-        padding: 12px 18px; 
-        font-size: 26px; 
-      }
-      .prize { 
-        font-size: 16px; 
-      }
-      .first-prize { 
-        font-size: 18px; 
-      }
-      .city { 
-        font-size: 16px; 
-      }
-      .trophy-icon { 
-        font-size: 22px; 
-      }
-      
-      /* Section title adjustments */
-      .section-title { 
-        font-size: 1.8rem; 
-        flex-direction: column; 
-        gap: 10px; 
-      }
-      .trophy-section { 
-        font-size: 2.5rem; 
+      .prize-rank {
+        font-size: 24px;
       }
     }
 
-    @media (max-width: 480px) {
-      .header h1 { 
-        font-size: 1.8rem; 
+    @media (min-width: 1024px) {
+      .header h1 {
+        font-size: 3.5rem;
       }
-      .organization { 
-        font-size: 1.4rem; 
+      .organization {
+        font-size: 2.5rem;
       }
-      .logo-img { 
-        height: 100px; 
-        max-width: 150px; 
+      .logo-img {
+        height: 250px;
       }
-      .ticket-img { 
-        height: 60px; 
-        max-width: 90px; 
+      .ticket-img {
+        height: 160px;
       }
-      .prize-animation { 
-        padding: 20px 15px; 
-      }
-      .prize-icon { 
-        font-size: 50px; 
-      }
-      .prize-title { 
-        font-size: 22px; 
-      }
-      .prize-amount { 
-        font-size: 28px; 
-      }
-      .prize-rank { 
-        font-size: 20px; 
-      }
-      .prize-city { 
-        font-size: 16px; 
-      }
-      .close-prize {
-        padding: 10px 25px;
-        font-size: 14px;
-        margin-top: 15px;
-      }
-      
-      /* Table adjustments for very small screens */
-      thead th { 
-        padding: 10px 6px; 
-        font-size: 16px; 
-      }
-      tbody td { 
-        padding: 12px 6px; 
-        font-size: 12px; 
-      }
-      .winning-number { 
-        padding: 12px 18px; 
-        font-size: 26px; 
-      }
-      .sanasili-number { 
-        padding: 10px 15px; 
-        font-size: 22px; 
-      }
-      .trophy-icon { 
-        font-size: 18px; 
-      }
-      .prize { 
-        font-size: 14px; 
-      }
-      .first-prize { 
-        font-size: 16px; 
-      }
-      .city { 
-        font-size: 14px; 
-      }
-      
-      /* Section title adjustments */
-      .section-title { 
-        font-size: 1.5rem; 
-      }
-      .trophy-section { 
-        font-size: 2rem; 
+      .section-title {
+        font-size: 2.5rem;
       }
     }
     
@@ -351,7 +209,7 @@
     }
     .header h1 { 
       color:white; 
-      font-size:3.5rem; 
+      font-size:2.5rem; 
       font-weight:700; 
       margin-bottom:0px; 
       text-shadow:2px 2px 4px rgba(0,0,0,0.3); 
@@ -359,7 +217,7 @@
     }
     .organization { 
       color: Yellow; 
-      font-size:2.5rem; 
+      font-size:1.8rem; 
       font-weight:600; 
       font-family:'Georgia', serif; 
       margin-top:5px; 
@@ -376,7 +234,7 @@
     }
     .section-title { 
       color:white; 
-      font-size:2.5rem; 
+      font-size:1.8rem; 
       font-weight:600; 
       margin-bottom:20px; 
       text-align:center; 
@@ -385,9 +243,10 @@
       align-items:center; 
       justify-content:center; 
       gap:15px; 
+      flex-direction: column;
     }
     .trophy-section { 
-      font-size:3rem; 
+      font-size:2.5rem; 
     }
     .text-section { 
       text-align:center; 
@@ -395,12 +254,13 @@
     
     .table-container { 
       background:white; 
-      border-radius:25px; 
+      border-radius:20px; 
       overflow:hidden; 
       box-shadow:var(--shadow); 
-      margin-bottom:50px; 
+      margin-bottom:30px; 
       backdrop-filter:blur(10px); 
       position:relative; 
+      overflow-x: auto;
     }
     .table-container::before { 
       content:''; 
@@ -414,6 +274,7 @@
     table { 
       width:100%; 
       border-collapse:collapse; 
+      min-width: 500px;
     }
     .winners-table thead { 
       background: var(--gold-gradient); 
@@ -423,8 +284,8 @@
     }
     thead th { 
       text-align:left; 
-      padding:20px; 
-      font-size:28px; 
+      padding:15px; 
+      font-size:20px; 
       font-weight:700; 
       text-transform:uppercase; 
       letter-spacing:1px; 
@@ -440,23 +301,23 @@
       transform:scale(1.01);
     }
     tbody td { 
-      padding:22px 20px; 
-      font-size:18px; 
+      padding:15px; 
+      font-size:16px; 
       color:#2d3748; 
       vertical-align:middle; 
     }
     .rank-number { 
       font-weight:700; 
-      font-size:22px; 
+      font-size:18px; 
       color:#667eea; 
     }
     .winning-number { 
       display:inline-flex; 
       align-items:center; 
-      padding:25px 35px; 
-      border-radius:12px; 
+      padding:15px 20px; 
+      border-radius:10px; 
       font-weight:700; 
-      font-size:48px; 
+      font-size:32px; 
       color:white; 
       background:var(--winner-gradient); 
       box-shadow:0 6px 15px rgba(255,107,107,0.3); 
@@ -488,10 +349,10 @@
     .sanasili-number { 
       display:inline-flex; 
       align-items:center; 
-      padding:18px 25px; 
-      border-radius:12px; 
+      padding:12px 18px; 
+      border-radius:10px; 
       font-weight:600; 
-      font-size:36px; 
+      font-size:26px; 
       color:white; 
       background:var(--sanasili-gradient); 
       box-shadow:0 4px 10px rgba(16,185,129,0.3); 
@@ -499,22 +360,22 @@
     }
     .prize { 
       font-weight:700; 
-      font-size:22px; 
+      font-size:18px; 
       color:#059669; 
     }
     .first-prize { 
-      font-size:28px; 
+      font-size:22px; 
       color:#dc2626; 
       text-shadow:1px 1px 2px rgba(220,38,38,0.3); 
     }
     .city { 
       font-weight:800; 
-      font-size:22px; 
+      font-size:18px; 
       color:#4a5568; 
     }
     .trophy-icon { 
-      margin-right:10px; 
-      font-size:35px; 
+      margin-right:8px; 
+      font-size:25px; 
     }
     .winner-row:first-child { 
       background:linear-gradient(90deg, #fef7cd, #fcd34d);
@@ -522,13 +383,62 @@
     .winner-row:first-child .winning-number { 
       background:linear-gradient(135deg, #dc2626 0%, #fbbf24 100%); 
       animation:goldPulse 2s infinite; 
-      font-size:52px; 
-      padding:28px 40px; 
+      font-size:36px; 
+      padding:18px 25px; 
     }
     @keyframes goldPulse { 
       0% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4); } 
       50% { transform:scale(1.08); box-shadow:0 8px 20px rgba(220,38,38,0.6);} 
       100% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4);} 
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        flex-direction: row;
+      }
+      .winning-number {
+        font-size: 40px;
+        padding: 20px 30px;
+      }
+      .winner-row:first-child .winning-number {
+        font-size: 46px;
+        padding: 22px 35px;
+      }
+      .sanasili-number {
+        font-size: 32px;
+        padding: 15px 22px;
+      }
+      thead th {
+        font-size: 24px;
+        padding: 18px;
+      }
+      tbody td {
+        padding: 18px;
+        font-size: 18px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .winning-number {
+        font-size: 48px;
+        padding: 25px 35px;
+      }
+      .winner-row:first-child .winning-number {
+        font-size: 52px;
+        padding: 28px 40px;
+      }
+      .sanasili-number {
+        font-size: 36px;
+        padding: 18px 25px;
+      }
+      thead th {
+        font-size: 28px;
+        padding: 20px;
+      }
+      tbody td {
+        padding: 22px 20px;
+        font-size: 18px;
+      }
     }
   </style>
 </head>
