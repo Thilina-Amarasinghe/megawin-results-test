@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raffle Draw Results</title>
+    <title>Raffle Draw Results with Yellow Card Popup</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -98,52 +98,6 @@
             transform: scale(1.1) rotate(3deg);
         }
 
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            body {
-                padding: 5px;
-            }
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .logo-section, .ticket-section, .title-section {
-                flex: none;
-                width: 100%;
-            }
-            .logo-img {
-                height: 120px;
-                max-width: 200px;
-            }
-            .ticket-img {
-                height: 80px;
-                max-width: 120px;
-            }
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            .organization {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            .organization {
-                font-size: 1.4rem;
-            }
-            .logo-img {
-                height: 100px;
-                max-width: 150px;
-            }
-            .ticket-img {
-                height: 60px;
-                max-width: 90px;
-            }
-        }
-
         @keyframes logoGlow {
             from { transform: scale(1); }
             to { transform: scale(1.05); }
@@ -202,27 +156,6 @@
 
         .text-section {
             text-align:center;
-        }
-
-        /* Mobile responsive for section titles */
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 1.8rem;
-                flex-direction: column;
-                gap: 10px;
-            }
-            .trophy-section {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .section-title {
-                font-size: 1.5rem;
-            }
-            .trophy-section {
-                font-size: 2rem;
-            }
         }
 
         .table-container {
@@ -306,78 +239,6 @@
             animation:pulse 2s infinite;
             position:relative;
             overflow:hidden;
-        }
-
-        /* Mobile responsive for tables - Smaller but same layout */
-        @media (max-width: 768px) {
-            thead th {
-                padding: 12px 8px;
-                font-size: 18px;
-            }
-            tbody td {
-                padding: 15px 8px;
-                font-size: 14px;
-            }
-            .rank-number {
-                font-size: 16px;
-            }
-            .winning-number {
-                padding: 15px 20px;
-                font-size: 30px;
-            }
-            .sanasili-number {
-                padding: 12px 18px;
-                font-size: 26px;
-            }
-            .prize {
-                font-size: 16px;
-            }
-            .first-prize {
-                font-size: 18px;
-            }
-            .city {
-                font-size: 16px;
-            }
-            .trophy-icon {
-                font-size: 22px;
-            }
-            .table-container {
-                margin-bottom: 35px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            thead th {
-                padding: 10px 6px;
-                font-size: 16px;
-            }
-            tbody td {
-                padding: 12px 6px;
-                font-size: 12px;
-            }
-            .winning-number {
-                padding: 12px 18px;
-                font-size: 26px;
-            }
-            .sanasili-number {
-                padding: 10px 15px;
-                font-size: 22px;
-            }
-            .trophy-icon {
-                font-size: 18px;
-            }
-            .prize {
-                font-size: 14px;
-            }
-            .first-prize {
-                font-size: 16px;
-            }
-            .city {
-                font-size: 14px;
-            }
-            tbody tr:hover {
-                transform: scale(1.01);
-            }
         }
 
         .winning-number::before {
@@ -464,18 +325,18 @@
             }
         }
 
-        /* NEW MODAL DESIGN - Yellow Card Style */
+        /* NEW YELLOW CARD MODAL */
         #ticketModal {
-            display:none;
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,0.8);
-            justify-content:center;
-            align-items:center;
-            z-index:1000;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
             backdrop-filter: blur(5px);
         }
 
@@ -491,96 +352,6 @@
             animation: modalSlideIn 0.4s ease-out;
             border: 3px solid #f9a825;
             overflow: hidden;
-        }
-
-        /* Mobile responsive for modal */
-        @media (max-width: 768px) {
-            .modal-content {
-                padding: 30px 25px;
-                width: 95%;
-                max-width: 300px;
-            }
-            .modal-crown {
-                font-size: 50px;
-                margin-bottom: 15px;
-            }
-            .modal-congrats-emoji {
-                font-size: 30px;
-                margin-bottom: 8px;
-            }
-            .modal-congrats-text {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-            .modal-congrats-english {
-                font-size: 22px;
-                margin-bottom: 20px;
-            }
-            .modal-prize-box {
-                padding: 20px 15px;
-                margin: 20px 0;
-            }
-            .modal-prize-amount {
-                font-size: 28px;
-            }
-            .modal-rank-text {
-                font-size: 18px;
-                margin: 15px 0 10px;
-            }
-            .modal-ticket-number {
-                font-size: 24px;
-                margin-bottom: 15px;
-            }
-            .modal-location {
-                font-size: 16px;
-                margin-bottom: 25px;
-            }
-            #closeModal {
-                padding: 12px 30px;
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .modal-content {
-                padding: 25px 20px;
-                width: 98%;
-            }
-            .modal-crown {
-                font-size: 40px;
-                margin-bottom: 12px;
-            }
-            .modal-congrats-emoji {
-                font-size: 25px;
-                margin-bottom: 6px;
-            }
-            .modal-congrats-text {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-            .modal-congrats-english {
-                font-size: 20px;
-                margin-bottom: 18px;
-            }
-            .modal-prize-box {
-                padding: 18px 12px;
-                margin: 18px 0;
-            }
-            .modal-prize-amount {
-                font-size: 24px;
-            }
-            .modal-rank-text {
-                font-size: 16px;
-                margin: 12px 0 8px;
-            }
-            .modal-ticket-number {
-                font-size: 20px;
-                margin-bottom: 12px;
-            }
-            .modal-location {
-                font-size: 14px;
-                margin-bottom: 20px;
-            }
         }
 
         @keyframes modalSlideIn {
@@ -709,7 +480,7 @@
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
-        /* Different styles for different modal types */
+        /* Different modal types */
         .winner-modal .modal-content {
             background: linear-gradient(135deg, #ffd93d 0%, #ffeb3b 100%);
             border: 3px solid #f9a825;
@@ -754,6 +525,71 @@
 
         .no-win-modal .modal-prize-box {
             background: linear-gradient(135deg, #9e9e9e 0%, #757575 100%);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .header-content { flex-direction: column; gap: 15px; }
+            .logo-section, .ticket-section, .title-section { flex: none; width: 100%; }
+            .logo-img { height: 120px; max-width: 200px; }
+            .ticket-img { height: 80px; max-width: 120px; }
+            .header h1 { font-size: 2.2rem; }
+            .organization { font-size: 1.8rem; }
+            .section-title { font-size: 1.8rem; flex-direction: column; gap: 10px; }
+            .trophy-section { font-size: 2.5rem; }
+            thead th { padding: 12px 8px; font-size: 18px; }
+            tbody td { padding: 15px 8px; font-size: 14px; }
+            .rank-number { font-size: 16px; }
+            .winning-number { padding: 15px 20px; font-size: 30px; }
+            .sanasili-number { padding: 12px 18px; font-size: 26px; }
+            .prize { font-size: 16px; }
+            .first-prize { font-size: 18px; }
+            .city { font-size: 16px; }
+            .trophy-icon { font-size: 22px; }
+            .table-container { margin-bottom: 35px; }
+            
+            /* Mobile modal */
+            .modal-content { padding: 30px 25px; width: 95%; max-width: 300px; }
+            .modal-crown { font-size: 50px; margin-bottom: 15px; }
+            .modal-congrats-emoji { font-size: 30px; margin-bottom: 8px; }
+            .modal-congrats-text { font-size: 18px; margin-bottom: 10px; }
+            .modal-congrats-english { font-size: 22px; margin-bottom: 20px; }
+            .modal-prize-box { padding: 20px 15px; margin: 20px 0; }
+            .modal-prize-amount { font-size: 28px; }
+            .modal-rank-text { font-size: 18px; margin: 15px 0 10px; }
+            .modal-ticket-number { font-size: 24px; margin-bottom: 15px; }
+            .modal-location { font-size: 16px; margin-bottom: 25px; }
+            #closeModal { padding: 12px 30px; font-size: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.8rem; }
+            .organization { font-size: 1.4rem; }
+            .logo-img { height: 100px; max-width: 150px; }
+            .ticket-img { height: 60px; max-width: 90px; }
+            .section-title { font-size: 1.5rem; }
+            .trophy-section { font-size: 2rem; }
+            thead th { padding: 10px 6px; font-size: 16px; }
+            tbody td { padding: 12px 6px; font-size: 12px; }
+            .winning-number { padding: 12px 18px; font-size: 26px; }
+            .sanasili-number { padding: 10px 15px; font-size: 22px; }
+            .trophy-icon { font-size: 18px; }
+            .prize { font-size: 14px; }
+            .first-prize { font-size: 16px; }
+            .city { font-size: 14px; }
+            
+            /* Smaller mobile modal */
+            .modal-content { padding: 25px 20px; width: 98%; }
+            .modal-crown { font-size: 40px; margin-bottom: 12px; }
+            .modal-congrats-emoji { font-size: 25px; margin-bottom: 6px; }
+            .modal-congrats-text { font-size: 16px; margin-bottom: 8px; }
+            .modal-congrats-english { font-size: 20px; margin-bottom: 18px; }
+            .modal-prize-box { padding: 18px 12px; margin: 18px 0; }
+            .modal-prize-amount { font-size: 24px; }
+            .modal-rank-text { font-size: 16px; margin: 12px 0 8px; }
+            .modal-ticket-number { font-size: 20px; margin-bottom: 12px; }
+            .modal-location { font-size: 14px; margin-bottom: 20px; }
         }
     </style>
 </head>
@@ -865,9 +701,20 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Test Section -->
+        <div style="text-align: center; margin: 30px 0; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px;">
+            <h3 style="color: white; margin-bottom: 15px;">Test Popup</h3>
+            <input type="text" id="ticketInput" placeholder="Enter ticket number" style="padding: 10px; font-size: 18px; margin-right: 10px; border: 2px solid #ccc; border-radius: 8px;">
+            <button onclick="checkTicketFromInput()" style="padding: 10px 20px; font-size: 18px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; margin: 5px;">Check Ticket</button>
+            <br><br>
+            <button onclick="showWinnerTest()" style="padding: 10px 20px; margin: 5px; font-size: 16px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer;">Test Winner</button>
+            <button onclick="showConsolationTest()" style="padding: 10px 20px; margin: 5px; font-size: 16px; background: #ffc107; color: white; border: none; border-radius: 8px; cursor: pointer;">Test Consolation</button>
+            <button onclick="showNoWinTest()" style="padding: 10px 20px; margin: 5px; font-size: 16px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer;">Test No Win</button>
+        </div>
     </div>
 
-    <!-- New Yellow Card Modal -->
+    <!-- Yellow Card Modal -->
     <div id="ticketModal">
         <div class="modal-content">
             <div class="modal-crown" id="modalCrown">👑</div>
@@ -879,5 +726,4 @@
                 <div class="modal-prize-amount" id="modalPrizeAmount">200,000 LKR</div>
             </div>
             
-            <div class="modal-rank-text" id="modalRank">1st Prize</div>
-            <div class="modal-ticket-number"
+            <div class="modal-rank-text" id="modalRank">1st Prize
