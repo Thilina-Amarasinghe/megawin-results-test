@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="si">
 <head>
@@ -9,8 +10,6 @@
     :root {
       --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
-      --winner-gradient: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
-      --sanasili-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
       --shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -53,6 +52,127 @@
     .section-title { color:white; font-size:2.5rem; font-weight:600; margin-bottom:20px; text-align:center; text-shadow:1px 1px 3px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; gap:15px; }
     .trophy-section { font-size:3rem; }
     .text-section { text-align:center; }
+    
+    /* Table styles */
+    .table-container { background:white; border-radius:25px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:50px; backdrop-filter:blur(10px); position:relative; }
+    .table-container::before { content:''; position:absolute; top:0; left:0; right:0; height:6px; background:var(--primary-gradient); }
+    table { width:100%; border-collapse:collapse; }
+    .winners-table thead { background: var(--gold-gradient); }
+    thead th { text-align:left; padding:20px; font-size:28px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:white; text-shadow:1px 1px 2px rgba(0,0,0,0.2); }
+    tbody tr { transition:all 0.3s ease; border-bottom:1px solid #f0f0f0; cursor:pointer; }
+    tbody tr:hover { background: linear-gradient(90deg, #f8fafc, #e2e8f0); transform:scale(1.01);}
+    tbody td { padding:22px 20px; font-size:18px; color:#2d3748; vertical-align:middle; }
+    .rank-number { font-weight:700; font-size:22px; color:#667eea; }
+    .winning-number { font-weight:700; font-size:24px; color:#111; }
+
+    /* Modal */
+    #ticketModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; backdrop-filter: blur(5px); }
+    .modal-content { background: #fff; padding:40px; border-radius:20px; text-align:center; max-width:500px; width:90%; position:relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: modalSlideIn 0.4s ease-out; }
+    .modal-title { font-size: 24px; font-weight: 700; margin-bottom: 15px; }
+    .modal-ticket-number { font-size: 28px; font-weight: 800; margin: 10px 0; color:#333; }
+    .modal-prize { font-size: 32px; font-weight: 800; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 15px 0; }
+    #closeModal { padding:10px 25px; background: var(--primary-gradient); color:#fff; border:none; border-radius:8px; cursor:pointer; margin-top:15px; }
+
+    @keyframes modalSlideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <div class="logo">
+            <img src="images/logo.png" alt="DLB Logo" class="logo-img">
+          </div>
+        </div>
+        <div class="title-section">
+          <h1>Raffle Draw Results</h1>
+          <h1>2025.12.26</h1>
+          <h2 class="organization">DLB Welfare Society</h2>
+        </div>
+        <div class="ticket-section">
+          <div class="ticket">
+            <img src="images/ticket.png" alt="Raffle Ticket" class="ticket-img">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Winners Table -->
+    <div class="table-container">
+      <table class="winners-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Winning Number</th>
+            <th>Prize</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ticket="1000001" data-prize="200000">
+            <td class="rank-number">1st Prize</td>
+            <td><span class="winning-number">1000001</span></td>
+            <td class="prize">200,000 LKR</td>
+          </tr>
+          <tr data-ticket="1000002" data-prize="150000">
+            <td class="rank-number">2nd Prize</td>
+            <td><span class="winning-number">1000002</span></td>
+            <td class="prize">150,000 LKR</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="ticketModal">
+    <div class="modal-content">
+      <div class="modal-title">Winning Ticket</div>
+      <div class="modal-ticket-number" id="modalTicket"></div>
+      <div class="modal-prize" id="modalPrize"></div>
+      <button id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("ticketModal");
+    const modalTicket = document.getElementById("modalTicket");
+    const modalPrize = document.getElementById("modalPrize");
+    const closeBtn = document.getElementById("closeModal");
+
+    document.querySelectorAll("tbody tr").forEach(row => {
+      row.addEventListener("click", () => {
+        const ticket = row.getAttribute("data-ticket");
+        const prize = parseInt(row.getAttribute("data-prize"));
+
+        // Ticket number static display
+        modalTicket.textContent = "Ticket No: " + ticket;
+
+        // Prize animate counter
+        let current = 0;
+        const duration = 1500;
+        const stepTime = 20;
+        const increment = Math.ceil(prize / (duration / stepTime));
+
+        modalPrize.textContent = "0 LKR";
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= prize) {
+            current = prize;
+            clearInterval(timer);
+          }
+          modalPrize.textContent = current.toLocaleString() + " LKR";
+        }, stepTime);
+
+        modal.style.display = "flex";
+      });
+    });
+
+    closeBtn.onclick = () => modal.style.display = "none";
+    modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+  </script>
+</body>
+</html>
     
     /* Mobile responsive for section titles */
     @media (max-width: 768px) {
@@ -516,6 +636,7 @@
   </script>
 </body>
 </html>
+
 
 
 
