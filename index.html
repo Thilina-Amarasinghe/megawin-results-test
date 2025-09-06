@@ -642,4 +642,117 @@
       const prizeAnimation = document.getElementById('prizeAnimation');
       const prizeIcon = document.getElementById('prizeIcon');
       const prizeTitle = document.getElementById('prizeTitle');
-      const prizeAmount = document.
+      const prizeAmount = document.getElementById('prizeAmount');
+      const prizeRank = document.getElementById('prizeRank');
+      const prizeCity = document.getElementById('prizeCity');
+      
+      // Remove previous classes
+      prizeAnimation.className = 'prize-animation-container';
+      
+      if (winnerData[ticket]) {
+        // Winner
+        const data = winnerData[ticket];
+        
+        // Special styling for 1st prize winner
+        if (ticket === '1000021') {
+          prizeAnimation.classList.add('first-winner-modal');
+        } else {
+          prizeAnimation.classList.add('winner-modal');
+        }
+        
+        prizeIcon.textContent = data.icon;
+        prizeTitle.textContent = 'Congratulations!';
+        prizeAmount.textContent = data.prize;
+        prizeRank.textContent = data.rank;
+        prizeCity.textContent = `City: ${data.city}`;
+        
+        // Show animation
+        prizeAnimation.classList.add('active');
+        
+        // Create confetti
+        createConfetti();
+      } else if (consolationData[ticket]) {
+        // Consolation Prize
+        prizeAnimation.classList.add('consolation-modal');
+        const data = consolationData[ticket];
+        prizeIcon.textContent = '🎉';
+        prizeTitle.textContent = 'Congratulations!';
+        prizeAmount.textContent = '10,000 LKR';
+        prizeRank.textContent = 'Consolation Prize';
+        prizeCity.textContent = `City: ${data.city}`;
+        
+        // Show animation
+        prizeAnimation.classList.add('active');
+        
+        // Create confetti
+        createConfetti();
+      } else {
+        // No Prize
+        prizeAnimation.classList.add('no-win-modal');
+        prizeIcon.textContent = '❌';
+        prizeTitle.textContent = 'Sorry!';
+        prizeAmount.textContent = 'Not a Winner';
+        prizeRank.textContent = 'Please try again next time';
+        prizeCity.textContent = '';
+        
+        // Show animation
+        prizeAnimation.classList.add('active');
+      }
+    }
+
+    function closePrizeAnimation() {
+      const prizeAnimation = document.getElementById('prizeAnimation');
+      prizeAnimation.classList.remove('active');
+      
+      // Clear confetti
+      const confetti = document.querySelectorAll('.confetti');
+      confetti.forEach(item => item.remove());
+    }
+
+    function createConfetti() {
+      const container = document.getElementById('prizeAnimation');
+      
+      // Create 50 confetti pieces
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        
+        // Random position
+        const left = Math.random() * 100;
+        confetti.style.left = `${left}%`;
+        
+        // Random size
+        const size = Math.random() * 10 + 5;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        
+        // Random color
+        const colors = ['#f8e71c', '#ff6b6b', '#4ecdc4', '#45b7d1', '#f7fff7'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.backgroundColor = color;
+        
+        // Random animation delay and duration
+        const delay = Math.random() * 2;
+        const duration = Math.random() * 2 + 2;
+        confetti.style.animation = `confettiFall ${duration}s linear ${delay}s infinite`;
+        
+        container.appendChild(confetti);
+      }
+    }
+
+    // Close animation when clicking outside
+    document.getElementById('prizeAnimation').onclick = (e) => {
+      if (e.target === document.getElementById('prizeAnimation')) {
+        closePrizeAnimation();
+      }
+    }
+
+    // QR / URL param check
+    const params = new URLSearchParams(window.location.search);
+    const scannedTicket = params.get('ticket');
+    if (scannedTicket) {
+      showPrizeAnimation(scannedTicket);
+    }
+  </script>
+</body>
+</html>
