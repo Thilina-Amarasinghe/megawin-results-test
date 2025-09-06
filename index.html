@@ -14,87 +14,20 @@
       --shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { 
-      font-family: 'Poppins', sans-serif; 
-      background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); 
-      min-height:100vh; 
-      padding: 8px;
-      font-size: 14px;
-    }
-    .container { max-width:100%; margin:0 auto;}
-    
-    /* Header Styles - Mobile First */
-    .header { text-align:center; margin-bottom:15px; }
-    .header-content { 
-      display:flex; 
-      flex-direction: column;
-      align-items:center; 
-      gap: 10px;
-      max-width:100%; 
-      margin:0 auto; 
-    }
-    .logo-section, .ticket-section { 
-      display:flex; 
-      justify-content:center; 
-      align-items:center; 
-    }
-    .title-section { text-align:center; order: 2; }
-    .logo-section { order: 1; }
-    .ticket-section { order: 3; }
-    
-    .logo { display:flex; justify-content:center; align-items:center; }
-    .logo-img { 
-      width:auto; 
-      height: 80px; 
-      max-width: 120px; 
-      object-fit:contain; 
-      background:transparent; 
-    }
-    .ticket { display:flex; justify-content:center; align-items:center; }
-    .ticket-img { 
-      width:auto; 
-      height: 50px; 
-      max-width: 80px; 
-      object-fit:contain; 
-      background:transparent; 
-    }
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
+    .container { max-width:1200px; margin:0 auto;}
+    .header { text-align:center; margin-bottom:20px; }
+    .header-content { display:flex; justify-content:space-between; align-items:center; max-width:100%; margin:0 auto; position:relative; }
+    .logo-section, .ticket-section { flex:1; display:flex; justify-content:center; align-items:center; }
+    .title-section { flex:2; text-align:center; }
+    .logo { display:flex; justify-content:center; align-items:center; animation:logoGlow 3s ease-in-out infinite alternate; }
+    .logo-img { width:auto; height:250px; max-width:500px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
+    .logo-img:hover { transform: scale(1.1); }
+    .ticket { display:flex; justify-content:center; align-items:center; animation:ticketFloat 2s ease-in-out infinite alternate; }
+    .ticket-img { width:auto; height:160px; max-width:240px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
+    .ticket-img:hover { transform: scale(1.1) rotate(3deg); }
 
-    /* Title Styles - Mobile First */
-    .header h1 { 
-      color:white; 
-      font-size: 1.5rem; 
-      font-weight:700; 
-      margin-bottom:5px; 
-      text-shadow:2px 2px 4px rgba(0,0,0,0.3); 
-      line-height: 1.2;
-    }
-    .organization { 
-      color: Yellow; 
-      font-size: 1.2rem; 
-      font-weight:600; 
-      font-family:'Georgia', serif; 
-      margin-top:5px; 
-      text-shadow:2px 2px 4px rgba(0,0,0,0.4); 
-    }
-
-    /* Section Title Styles - Mobile First */
-    .section-title { 
-      color:white; 
-      font-size: 1.3rem; 
-      font-weight:600; 
-      margin-bottom:15px; 
-      text-align:center; 
-      text-shadow:1px 1px 3px rgba(0,0,0,0.3); 
-      display:flex; 
-      flex-direction: column;
-      align-items:center; 
-      justify-content:center; 
-      gap: 8px; 
-    }
-    .trophy-section { font-size: 1.8rem; }
-    .text-section { text-align:center; }
-
-    /* Prize Animation Container - Mobile Optimized */
+    /* Prize Animation Container */
     .prize-animation-container {
       position: fixed;
       top: 0;
@@ -110,41 +43,38 @@
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
-      padding: 10px;
     }
     .prize-animation-container.active {
       opacity: 1;
       visibility: visible;
     }
     .prize-animation {
-      background: #fcf523;
-      padding: 20px 15px;
-      border-radius: 15px;
+      background: #fcf523; /* Light yellow background for winners */
+      padding: 40px;
+      border-radius: 20px;
       text-align: center;
-      max-width: 95%;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
+      max-width: 500px;
+      width: 90%;
       position: relative;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
       transform: translateY(50px);
       transition: transform 0.5s ease;
-      border: 3px solid #f8e71c;
+      border: 5px solid #f8e71c;
     }
     .consolation-modal .prize-animation {
-      background: #b3f5d2;
-      border: 3px solid #10b981;
+      background: #b3f5d2; /* Light green background for consolation */
+      border: 5px solid #10b981;
     }
     .no-win-modal .prize-animation {
-      background: #ffe6e6;
-      border: 3px solid #e74c3c;
+      background: #ffe6e6; /* Light red background for non-winners */
+      border: 5px solid #e74c3c;
     }
     .prize-animation-container.active .prize-animation {
       transform: translateY(0);
     }
     .prize-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
+      font-size: 80px;
+      margin-bottom: 20px;
       display: block;
       color: #f8e71c;
     }
@@ -155,168 +85,57 @@
       color: #e74c3c;
     }
     .prize-title {
-      font-size: 20px;
+      font-size: 32px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       color: #4a4a4a;
     }
     .prize-amount {
-      font-size: 24px;
+      font-size: 42px;
       font-weight: 800;
-      margin: 8px 0;
+      margin: 10px 0;
       color: #e74c3c;
       animation: zoomInOut 2s infinite;
     }
-    .prize-rank {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #4a4a4a;
-    }
-    .prize-city {
-      font-size: 16px;
-      color: #4a5568;
-      margin-top: 8px;
-    }
-    .close-prize {
-      padding: 12px 30px;
-      border: none;
-      background: #e74c3c;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      margin-top: 15px;
-      transition: all 0.3s ease;
-      width: 100%;
-      max-width: 200px;
-    }
-
     @keyframes zoomInOut {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
-
-    /* Table Styles - Mobile First */
-    .table-container { 
-      background:white; 
-      border-radius:15px; 
-      overflow:hidden; 
-      box-shadow:var(--shadow); 
-      margin-bottom:25px; 
-      position:relative; 
+    .prize-rank {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #4a4a4a;
     }
-    .table-container::before { 
-      content:''; 
-      position:absolute; 
-      top:0; 
-      left:0; 
-      right:0; 
-      height:4px; 
-      background:var(--primary-gradient); 
+    .prize-city {
+      font-size: 22px;
+      color: #4a5568;
+      margin-top: 10px;
     }
-    table { 
-      width:100%; 
-      border-collapse:collapse; 
-      font-size: 12px;
+    .close-prize {
+      padding:15px 40px;
+      border:none;
+      background: #e74c3c;
+      color:white;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:18px;
+      font-weight:600;
+      margin-top:20px;
+      transition: all 0.3s ease;
     }
-    .winners-table thead { background: var(--gold-gradient); }
-    .sanasili-table thead { background: var(--sanasili-gradient); }
-    thead th { 
-      text-align:left; 
-      padding: 10px 6px; 
-      font-size: 14px; 
-      font-weight:700; 
-      text-transform:uppercase; 
-      letter-spacing:0.5px; 
-      color:white; 
-      text-shadow:1px 1px 2px rgba(0,0,0,0.2); 
+    .close-prize:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+      background: #c0392b;
     }
-    tbody tr { 
-      transition:all 0.3s ease; 
-      border-bottom:1px solid #f0f0f0; 
-    }
-    tbody tr:hover { 
-      background: linear-gradient(90deg, #f8fafc, #e2e8f0); 
-    }
-    tbody td { 
-      padding: 12px 6px; 
-      font-size: 11px; 
-      color:#2d3748; 
-      vertical-align:middle; 
-      word-wrap: break-word;
-    }
-    .rank-number { 
-      font-weight:700; 
-      font-size: 12px; 
-      color:#667eea; 
-    }
-    .winning-number { 
-      display:inline-flex; 
-      align-items:center; 
-      padding: 8px 12px; 
-      border-radius:8px; 
-      font-weight:700; 
-      font-size: 18px; 
-      color:white; 
-      background:var(--winner-gradient); 
-      box-shadow:0 4px 10px rgba(255,107,107,0.3); 
-      text-shadow:1px 1px 2px rgba(0,0,0,0.2); 
-      position:relative; 
-      overflow:hidden; 
-      min-width: 80px;
-      justify-content: center;
-    }
-    .sanasili-number { 
-      display:inline-flex; 
-      align-items:center; 
-      padding: 6px 10px; 
-      border-radius:8px; 
-      font-weight:600; 
-      font-size: 16px; 
-      color:white; 
-      background:var(--sanasili-gradient); 
-      box-shadow:0 3px 8px rgba(16,185,129,0.3); 
-      text-shadow:1px 1px 2px rgba(0,0,0,0.2); 
-      min-width: 70px;
-      justify-content: center;
-    }
-    .prize { 
-      font-weight:700; 
-      font-size: 11px; 
-      color:#059669; 
-      white-space: nowrap;
-    }
-    .first-prize { 
-      font-size: 12px; 
-      color:#dc2626; 
-      text-shadow:1px 1px 2px rgba(220,38,38,0.3); 
-    }
-    .city { 
-      font-weight:600; 
-      font-size: 11px; 
-      color:#4a5568; 
-    }
-    .trophy-icon { 
-      margin-right: 4px; 
-      font-size: 16px; 
-    }
-    .winner-row:first-child { 
-      background:linear-gradient(90deg, #fef7cd, #fcd34d);
-    }
-    .winner-row:first-child .winning-number { 
-      background:linear-gradient(135deg, #dc2626 0%, #fbbf24 100%); 
-      font-size: 20px; 
-      padding: 10px 15px; 
-    }
-
+    
     /* Confetti animation */
     .confetti {
       position: absolute;
-      width: 6px;
-      height: 6px;
+      width: 10px;
+      height: 10px;
       background-color: #f8e71c;
       opacity: 0;
     }
@@ -324,117 +143,104 @@
       0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
-
-    /* Tablet Styles */
-    @media (min-width: 481px) and (max-width: 768px) {
-      body { padding: 10px; font-size: 15px; }
-      .header h1 { font-size: 2rem; }
-      .organization { font-size: 1.5rem; }
-      .logo-img { height: 100px; max-width: 150px; }
-      .ticket-img { height: 70px; max-width: 110px; }
-      .section-title { font-size: 1.6rem; }
-      .trophy-section { font-size: 2.2rem; }
-      .header-content { flex-direction: row; gap: 15px; }
-      .title-section { order: 2; }
-      .logo-section { order: 1; }
-      .ticket-section { order: 3; }
-      thead th { padding: 12px 8px; font-size: 16px; }
-      tbody td { padding: 15px 8px; font-size: 13px; }
-      .winning-number { font-size: 22px; padding: 12px 18px; }
-      .sanasili-number { font-size: 20px; padding: 10px 15px; }
-      .prize { font-size: 13px; }
-      .first-prize { font-size: 15px; }
-      .city { font-size: 13px; }
-    }
-
-    /* Desktop Styles */
-    @media (min-width: 769px) {
-      body { padding: 15px; font-size: 16px; }
-      .container { max-width: 1200px; }
-      .header-content { 
-        flex-direction: row; 
-        justify-content: space-between; 
-        gap: 20px;
-      }
-      .logo-section, .ticket-section, .title-section { flex: 1; }
-      .title-section { order: 2; }
-      .logo-section { order: 1; }
-      .ticket-section { order: 3; }
-      .logo-img { 
-        height: 200px; 
-        max-width: 300px;
-        animation: logoGlow 3s ease-in-out infinite alternate;
-      }
-      .ticket-img { 
-        height: 120px; 
-        max-width: 180px;
-        animation: ticketFloat 2s ease-in-out infinite alternate;
-      }
-      .header h1 { 
-        font-size: 3rem;
-        animation: glow 2s ease-in-out infinite alternate;
-      }
-      .organization { 
-        font-size: 2rem;
-        animation: organizationGlow 2.5s ease-in-out infinite alternate;
-      }
-      .section-title { 
-        font-size: 2.2rem; 
-        flex-direction: row;
-        gap: 15px;
-      }
-      .trophy-section { font-size: 2.8rem; }
-      thead th { padding: 18px 15px; font-size: 24px; }
-      tbody td { padding: 20px 15px; font-size: 16px; }
-      .winning-number { font-size: 38px; padding: 20px 30px; }
-      .sanasili-number { font-size: 28px; padding: 15px 20px; }
-      .winner-row:first-child .winning-number { font-size: 42px; padding: 25px 35px; }
-      .prize { font-size: 18px; }
-      .first-prize { font-size: 22px; }
-      .city { font-size: 18px; }
-      .trophy-icon { font-size: 28px; margin-right: 8px; }
-      .prize-animation { padding: 35px 25px; max-width: 450px; }
+    
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      body { padding: 5px; }
+      .header-content { flex-direction: column; gap: 15px; }
+      .logo-section, .ticket-section, .title-section { flex: none; width: 100%; }
+      .logo-img { height: 120px; max-width: 200px; }
+      .ticket-img { height: 80px; max-width: 120px; }
+      .header h1 { font-size: 2.2rem; }
+      .organization { font-size: 1.8rem; }
+      .prize-animation { padding: 30px 20px; }
       .prize-icon { font-size: 60px; }
-      .prize-title { font-size: 28px; }
-      .prize-amount { font-size: 36px; }
-      .prize-rank { font-size: 24px; }
-      .prize-city { font-size: 20px; }
-      .close-prize { width: auto; }
-      
-      /* Desktop Animations */
-      @keyframes logoGlow { 
-        from { transform: scale(1); } 
-        to { transform: scale(1.05); } 
-      }
-      @keyframes ticketFloat { 
-        from { transform: translateY(0px) rotate(-2deg); } 
-        to { transform: translateY(-10px) rotate(2deg); } 
-      }
-      @keyframes glow { 
-        from { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.2);} 
-        to { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.4);} 
-      }
-      @keyframes organizationGlow { 
-        from { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 15px rgba(255, 215, 0,0.3);} 
-        to { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 25px rgba(255, 215, 0,0.6);} 
-      }
-      @keyframes pulse { 
-        0% { transform:scale(1);} 
-        50% { transform:scale(1.05);} 
-        100% { transform:scale(1);} 
-      }
-      @keyframes goldPulse { 
-        0% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4); } 
-        50% { transform:scale(1.08); box-shadow:0 8px 20px rgba(220,38,38,0.6);} 
-        100% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4);} 
-      }
-      .winning-number {
-        animation: pulse 2s infinite;
-      }
-      .winner-row:first-child .winning-number {
-        animation: goldPulse 2s infinite;
-      }
+      .prize-title { font-size: 26px; }
+      .prize-amount { font-size: 32px; }
+      .prize-rank { font-size: 22px; }
+      .prize-city { font-size: 18px; }
     }
+
+    @media (max-width: 480px) {
+      .header h1 { font-size: 1.8rem; }
+      .organization { font-size: 1.4rem; }
+      .logo-img { height: 100px; max-width: 150px; }
+      .ticket-img { height: 60px; max-width: 90px; }
+      .prize-animation { padding: 20px 15px; }
+      .prize-icon { font-size: 50px; }
+      .prize-title { font-size: 22px; }
+      .prize-amount { font-size: 28px; }
+      .prize-rank { font-size: 20px; }
+      .prize-city { font-size: 16px; }
+    }
+    @keyframes logoGlow { from { transform: scale(1); } to { transform: scale(1.05); } }
+    @keyframes ticketFloat { from { transform: translateY(0px) rotate(-2deg); } to { transform: translateY(-10px) rotate(2deg); } }
+    .header h1 { color:white; font-size:3.5rem; font-weight:700; margin-bottom:0px; text-shadow:2px 2px 4px rgba(0,0,0,0.3); animation:glow 2s ease-in-out infinite alternate; }
+    .organization { color: Yellow; font-size:2.5rem; font-weight:600; font-family:'Georgia', serif; margin-top:5px; text-shadow:2px 2px 4px rgba(0,0,0,0.4); animation:organizationGlow 2.5s ease-in-out infinite alternate; }
+    @keyframes organizationGlow { from { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 15px rgba(255, 215, 0,0.3);} to { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 25px rgba(255, 215, 0,0.6);} }
+    @keyframes glow { from { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.2);} to { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.4);} }
+    .section-title { color:white; font-size:2.5rem; font-weight:600; margin-bottom:20px; text-align:center; text-shadow:1px 1px 3px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; gap:15px; }
+    .trophy-section { font-size:3rem; }
+    .text-section { text-align:center; }
+    
+    /* Mobile responsive for section titles */
+    @media (max-width: 768px) {
+      .section-title { font-size: 1.8rem; flex-direction: column; gap: 10px; }
+      .trophy-section { font-size: 2.5rem; }
+    }
+    
+    @media (max-width: 480px) {
+      .section-title { font-size: 1.5rem; }
+      .trophy-section { font-size: 2rem; }
+    }
+    .table-container { background:white; border-radius:25px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:50px; backdrop-filter:blur(10px); position:relative; }
+    .table-container::before { content:''; position:absolute; top:0; left:0; right:0; height:6px; background:var(--primary-gradient); }
+    table { width:100%; border-collapse:collapse; }
+    .winners-table thead { background: var(--gold-gradient); }
+    .sanasili-table thead { background: var(--sanasili-gradient); }
+    thead th { text-align:left; padding:20px; font-size:28px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:white; text-shadow:1px 1px 2px rgba(0,0,0,0.2); }
+    tbody tr { transition:all 0.3s ease; border-bottom:1px solid #f0f0f0; }
+    tbody tr:hover { background: linear-gradient(90deg, #f8fafc, #e2e8f0); transform:scale(1.01);}
+    tbody td { padding:22px 20px; font-size:18px; color:#2d3748; vertical-align:middle; }
+    .rank-number { font-weight:700; font-size:22px; color:#667eea; }
+    .winning-number { display:inline-flex; align-items:center; padding:25px 35px; border-radius:12px; font-weight:700; font-size:48px; color:white; background:var(--winner-gradient); box-shadow:0 6px 15px rgba(255,107,107,0.3); text-shadow:1px 1px 2px rgba(0,0,0,0.2); animation:pulse 2s infinite; position:relative; overflow:hidden; }
+    
+    /* Mobile responsive for tables - Smaller but same layout */
+    @media (max-width: 768px) {
+      thead th { padding: 12px 8px; font-size: 18px; }
+      tbody td { padding: 15px 8px; font-size: 14px; }
+      .rank-number { font-size: 16px; }
+      .winning-number { padding: 15px 20px; font-size: 30px; }
+      .sanasili-number { padding: 12px 18px; font-size: 26px; }
+      .prize { font-size: 16px; }
+      .first-prize { font-size: 18px; }
+      .city { font-size: 16px; }
+      .trophy-icon { font-size: 22px; }
+      .table-container { margin-bottom: 35px; }
+    }
+    
+    @media (max-width: 480px) {
+      thead th { padding: 10px 6px; font-size: 16px; }
+      tbody td { padding: 12px 6px; font-size: 12px; }
+      .winning-number { padding: 12px 18px; font-size: 26px; }
+      .sanasili-number { padding: 10px 15px; font-size: 22px; }
+      .trophy-icon { font-size: 18px; }
+      .prize { font-size: 14px; }
+      .first-prize { font-size: 16px; }
+      .city { font-size: 14px; }
+      tbody tr:hover { transform: scale(1.01); }
+    }
+    .winning-number::before { content:''; position:absolute; top:-50%; left:-50%; width:150%; height:150%; background:linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent); animation:shimmer 3s infinite; }
+    @keyframes pulse { 0% { transform:scale(1);} 50% { transform:scale(1.05);} 100% { transform:scale(1);} }
+    @keyframes shimmer { 0% { transform:translateX(-100%) translateY(-100%) rotate(45deg);} 100% { transform:translateX(100%) translateY(100%) rotate(45deg);} }
+    .sanasili-number { display:inline-flex; align-items:center; padding:18px 25px; border-radius:12px; font-weight:600; font-size:36px; color:white; background:var(--sanasili-gradient); box-shadow:0 4px 10px rgba(16,185,129,0.3); text-shadow:1px 1px 2px rgba(0,0,0,0.2); }
+    .prize { font-weight:700; font-size:22px; color:#059669; }
+    .first-prize { font-size:28px; color:#dc2626; text-shadow:1px 1px 2px rgba(220,38,38,0.3); }
+    .city { font-weight:800; font-size:22px; color:#4a5568; }
+    .trophy-icon { margin-right:10px; font-size:35px; }
+    .winner-row:first-child { background:linear-gradient(90deg, #fef7cd, #fcd34d);}
+    .winner-row:first-child .winning-number { background:linear-gradient(135deg, #dc2626 0%, #fbbf24 100%); animation:goldPulse 2s infinite; font-size:52px; padding:28px 40px; }
+    @keyframes goldPulse { 0% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4); } 50% { transform:scale(1.08); box-shadow:0 8px 20px rgba(220,38,38,0.6);} 100% { transform:scale(1); box-shadow:0 6px 15px rgba(220,38,38,0.4);} }
   </style>
 </head>
 <body>
@@ -650,9 +456,8 @@
     function createConfetti() {
       const container = document.getElementById('prizeAnimation');
       
-      // Create confetti pieces (fewer for mobile)
-      const confettiCount = window.innerWidth < 768 ? 30 : 50;
-      for (let i = 0; i < confettiCount; i++) {
+      // Create 50 confetti pieces
+      for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
         
@@ -660,8 +465,8 @@
         const left = Math.random() * 100;
         confetti.style.left = `${left}%`;
         
-        // Random size (smaller for mobile)
-        const size = window.innerWidth < 768 ? Math.random() * 6 + 3 : Math.random() * 10 + 5;
+        // Random size
+        const size = Math.random() * 10 + 5;
         confetti.style.width = `${size}px`;
         confetti.style.height = `${size}px`;
         
@@ -681,3 +486,25 @@
 
     // Close animation when clicking outside
     document.getElementById('prizeAnimation').onclick = (e) => {
+      if (e.target === document.getElementById('prizeAnimation')) {
+        closePrizeAnimation();
+      }
+    }
+
+    // QR / URL param check
+    const params = new URLSearchParams(window.location.search);
+    const scannedTicket = params.get('ticket');
+    if (scannedTicket) {
+      showPrizeAnimation(scannedTicket);
+    }
+
+    // REMOVED the automatic demo code that was causing the issue
+    // This prevents the popup from changing after the initial display
+  </script>
+</body>
+</html>
+
+
+
+
+
