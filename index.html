@@ -12,6 +12,8 @@
       --winner-gradient: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
       --sanasili-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
       --shadow: 0 10px 30px rgba(0,0,0,0.15);
+      --gold-color: #ffd700;
+      --dark-gold: #daa520;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
@@ -61,6 +63,14 @@
       transition: transform 0.5s ease;
       border: 5px solid #f8e71c;
     }
+    
+    /* First Prize Specific Styles */
+    .first-prize-modal .prize-animation {
+      background: linear-gradient(135deg, #fff9c4 0%, #ffeb3b 100%);
+      border: 5px solid var(--gold-color);
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+    }
+    
     .consolation-modal .prize-animation {
       background: #b3f5d2; /* Light green background for consolation */
       border: 5px solid #10b981;
@@ -78,6 +88,14 @@
       display: block;
       color: #f8e71c;
     }
+    
+    /* First Prize Icon Animation */
+    .first-prize-modal .prize-icon {
+      color: var(--gold-color);
+      animation: crownAnimation 2s ease-in-out infinite alternate;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+    
     .consolation-modal .prize-icon {
       color: #10b981;
     }
@@ -97,6 +115,13 @@
       color: #e74c3c;
       animation: zoomInOut 2s infinite;
     }
+    
+    /* First Prize Amount Style */
+    .first-prize-modal .prize-amount {
+      color: var(--dark-gold);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    
     @keyframes zoomInOut {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
@@ -108,11 +133,24 @@
       margin-bottom: 10px;
       color: #4a4a4a;
     }
+    
+    /* First Prize Rank Style */
+    .first-prize-modal .prize-rank {
+      color: var(--dark-gold);
+    }
+    
     .prize-city {
       font-size: 22px;
       color: #4a5568;
       margin-top: 10px;
     }
+    
+    /* First Prize City Style */
+    .first-prize-modal .prize-city {
+      color: #8b7500;
+      font-weight: 600;
+    }
+    
     .close-prize {
       padding:15px 40px;
       border:none;
@@ -125,130 +163,62 @@
       margin-top:20px;
       transition: all 0.3s ease;
     }
+    
+    /* First Prize Close Button */
+    .first-prize-modal .close-prize {
+      background: var(--dark-gold);
+    }
+    
+    .first-prize-modal .close-prize:hover {
+      background: #b8860b;
+    }
+    
     .close-prize:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
       background: #c0392b;
     }
     
-    /* Confetti animation */
-    .confetti {
+    /* Crown Animation */
+    @keyframes crownAnimation {
+      0% {
+        transform: scale(1) rotate(0deg);
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+      50% {
+        transform: scale(1.2) rotate(5deg);
+        text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+      }
+      100% {
+        transform: scale(1.1) rotate(-5deg);
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+      }
+    }
+    
+    /* Gold Confetti Animation */
+    .gold-confetti {
       position: absolute;
       width: 10px;
       height: 10px;
-      background-color: #f8e71c;
+      background-color: var(--gold-color);
       opacity: 0;
-    }
-    @keyframes confettiFall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-    
-    /* Enhanced 1st Prize Animation */
-    .first-prize-modal .prize-animation {
-      background: linear-gradient(135deg, #fff9c4 0%, #ffeb3b 100%);
-      border: 5px solid #ffd700;
-      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.5);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .first-prize-modal .prize-animation::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
-      transform: rotate(30deg);
-      animation: shine 3s infinite;
-    }
-    
-    .first-prize-modal .prize-icon {
-      font-size: 100px;
-      color: #ffd700;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
-      animation: crownZoom 2s infinite alternate;
-    }
-    
-    .first-prize-modal .prize-title {
-      font-size: 42px;
-      color: #d4af37;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-      position: relative;
-      z-index: 2;
-    }
-    
-    .first-prize-modal .prize-amount {
-      font-size: 52px;
-      color: #c62828;
-      background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-      animation: prizeZoom 2s infinite;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .first-prize-modal .prize-rank {
-      font-size: 32px;
-      color: #5d4037;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .first-prize-modal .prize-city {
-      font-size: 26px;
-      color: #5d4037;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .first-prize-modal .close-prize {
-      background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
-      box-shadow: 0 8px 20px rgba(184, 134, 11, 0.4);
-      position: relative;
-      z-index: 2;
-    }
-    
-    .first-prize-modal .close-prize:hover {
-      background: linear-gradient(135deg, #b8860b 0%, #996515 100%);
-    }
-    
-    @keyframes shine {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
-    }
-    
-    /* Crown zoom animation */
-    @keyframes crownZoom {
-      from { transform: scale(1); text-shadow: 0 0 20px rgba(255, 215, 0, 0.7); }
-      to { transform: scale(1.2); text-shadow: 0 0 30px rgba(255, 215, 0, 0.9); }
-    }
-    
-    /* Prize amount zoom animation */
-    @keyframes prizeZoom {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-      100% { transform: scale(1); }
-    }
-    
-    /* Gold particles animation */
-    .gold-particle {
-      position: absolute;
-      background-color: #ffd700;
       border-radius: 50%;
-      opacity: 0;
-      z-index: 1;
     }
     
-    @keyframes goldFall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    @keyframes goldConfettiFall {
+      0% { 
+        transform: translateY(-100px) rotate(0deg) scale(1); 
+        opacity: 1; 
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% { 
+        transform: translateY(100vh) rotate(360deg) scale(0.5); 
+        opacity: 0; 
+      }
     }
-
+    
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       body { padding: 5px; }
@@ -264,13 +234,6 @@
       .prize-amount { font-size: 32px; }
       .prize-rank { font-size: 22px; }
       .prize-city { font-size: 18px; }
-      
-      /* Mobile adjustments for 1st prize */
-      .first-prize-modal .prize-icon { font-size: 80px; }
-      .first-prize-modal .prize-title { font-size: 32px; }
-      .first-prize-modal .prize-amount { font-size: 42px; }
-      .first-prize-modal .prize-rank { font-size: 26px; }
-      .first-prize-modal .prize-city { font-size: 20px; }
     }
 
     @media (max-width: 480px) {
@@ -284,13 +247,6 @@
       .prize-amount { font-size: 28px; }
       .prize-rank { font-size: 20px; }
       .prize-city { font-size: 16px; }
-      
-      /* Mobile adjustments for 1st prize */
-      .first-prize-modal .prize-icon { font-size: 70px; }
-      .first-prize-modal .prize-title { font-size: 28px; }
-      .first-prize-modal .prize-amount { font-size: 36px; }
-      .first-prize-modal .prize-rank { font-size: 22px; }
-      .first-prize-modal .prize-city { font-size: 18px; }
     }
     @keyframes logoGlow { from { transform: scale(1); } to { transform: scale(1.05); } }
     @keyframes ticketFloat { from { transform: translateY(0px) rotate(-2deg); } to { transform: translateY(-10px) rotate(2deg); } }
@@ -522,11 +478,11 @@
       if (winnerData[ticket]) {
         const data = winnerData[ticket];
         
-        // Special styling for 1st prize
+        // Check if it's first prize
         if (data.rank === '1st Prize') {
           prizeAnimation.classList.add('first-prize-modal');
           prizeIcon.textContent = data.icon;
-          prizeTitle.textContent = 'Grand Prize Winner!';
+          prizeTitle.textContent = 'Congratulations!';
           prizeAmount.textContent = data.prize;
           prizeRank.textContent = data.rank;
           prizeCity.textContent = `City: ${data.city}`;
@@ -534,10 +490,10 @@
           // Show animation
           prizeAnimation.classList.add('active');
           
-          // Create gold particles instead of regular confetti
-          createGoldParticles();
+          // Create gold confetti
+          createGoldConfetti();
         } else {
-          // Regular winner
+          // Other winners
           prizeAnimation.classList.add('winner-modal');
           prizeIcon.textContent = data.icon;
           prizeTitle.textContent = 'Congratulations!';
@@ -584,8 +540,8 @@
       const prizeAnimation = document.getElementById('prizeAnimation');
       prizeAnimation.classList.remove('active');
       
-      // Clear confetti and particles
-      const confetti = document.querySelectorAll('.confetti, .gold-particle');
+      // Clear confetti
+      const confetti = document.querySelectorAll('.confetti, .gold-confetti');
       confetti.forEach(item => item.remove());
     }
 
@@ -619,34 +575,36 @@
         container.appendChild(confetti);
       }
     }
-
-    function createGoldParticles() {
+    
+    function createGoldConfetti() {
       const container = document.getElementById('prizeAnimation');
       
-      // Create 100 gold particles
+      // Create 100 gold confetti pieces
       for (let i = 0; i < 100; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('gold-particle');
+        const confetti = document.createElement('div');
+        confetti.classList.add('gold-confetti');
         
         // Random position
         const left = Math.random() * 100;
-        particle.style.left = `${left}%`;
+        confetti.style.left = `${left}%`;
         
-        // Random size (larger than confetti)
-        const size = Math.random() * 15 + 8;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
+        // Random size
+        const size = Math.random() * 12 + 8;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
         
-        // Gold color with gradient
-        particle.style.background = 'radial-gradient(circle, #ffd700 0%, #daa520 100%)';
-        particle.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.8)';
+        // Gold color with variations
+        const goldColors = ['#ffd700', '#daa520', '#ffdf00', '#f8d568', '#ffec8b'];
+        const color = goldColors[Math.floor(Math.random() * goldColors.length)];
+        confetti.style.backgroundColor = color;
+        confetti.style.boxShadow = '0 0 8px rgba(255, 215, 0, 0.7)';
         
         // Random animation delay and duration
         const delay = Math.random() * 2;
         const duration = Math.random() * 3 + 3;
-        particle.style.animation = `goldFall ${duration}s linear ${delay}s infinite`;
+        confetti.style.animation = `goldConfettiFall ${duration}s linear ${delay}s infinite`;
         
-        container.appendChild(particle);
+        container.appendChild(confetti);
       }
     }
 
@@ -664,13 +622,8 @@
       showPrizeAnimation(scannedTicket);
     }
 
-    // Demo function to test the 1st prize popup
-    function demoFirstPrize() {
-      showPrizeAnimation('1000021');
-    }
-
-    // Uncomment the line below to automatically show the 1st prize popup for demo purposes
-    // setTimeout(demoFirstPrize, 1000);
+    // REMOVED the automatic demo code that was causing the issue
+    // This prevents the popup from changing after the initial display
   </script>
 </body>
 </html>
