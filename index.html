@@ -144,272 +144,35 @@
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
     
-    /* Improved Mobile Responsive Styles */
+    /* Mobile Responsive Styles */
     @media (max-width: 768px) {
-      body { padding: 5px 2px; }
-      .container { padding: 0 5px; }
-      
-      /* Header mobile layout - stack vertically */
-      .header-content { 
-        flex-direction: column; 
-        gap: 10px; 
-        padding: 10px 0;
-      }
-      .logo-section, .ticket-section, .title-section { 
-        flex: none; 
-        width: 100%; 
-        margin: 5px 0;
-      }
-      
-      /* Smaller images for mobile */
-      .logo-img { 
-        height: 80px; 
-        max-width: 150px; 
-      }
-      .ticket-img { 
-        height: 60px; 
-        max-width: 100px; 
-      }
-      
-      /* Mobile header text */
-      .header h1 { 
-        font-size: 1.8rem; 
-        line-height: 1.2;
-        margin-bottom: 5px;
-      }
-      .organization { 
-        font-size: 1.4rem; 
-        margin-top: 2px;
-      }
-      
-      /* Mobile section titles */
-      .section-title { 
-        font-size: 1.4rem; 
-        flex-direction: column; 
-        gap: 5px; 
-        margin-bottom: 15px;
-      }
-      .trophy-section { 
-        font-size: 2rem; 
-      }
-      
-      /* Mobile table styles */
-      .table-container { 
-        margin-bottom: 25px; 
-        border-radius: 15px;
-        overflow-x: auto;
-      }
-      
-      table {
-        min-width: 100%;
-        font-size: 14px;
-      }
-      
-      thead th { 
-        padding: 10px 8px; 
-        font-size: 14px; 
-        white-space: nowrap;
-      }
-      
-      tbody td { 
-        padding: 12px 8px; 
-        font-size: 12px; 
-        vertical-align: middle;
-      }
-      
-      .rank-number { 
-        font-size: 14px; 
-        font-weight: 600;
-      }
-      
-      .winning-number { 
-        padding: 12px 16px; 
-        font-size: 24px; 
-        border-radius: 8px;
-        white-space: nowrap;
-      }
-      
-      .sanasili-number { 
-        padding: 10px 14px; 
-        font-size: 20px; 
-        border-radius: 8px;
-        white-space: nowrap;
-      }
-      
-      .prize { 
-        font-size: 13px; 
-        font-weight: 600;
-      }
-      .first-prize { 
-        font-size: 15px; 
-      }
-      
-      .city { 
-        font-size: 12px; 
-        font-weight: 600;
-      }
-      
-      .trophy-icon { 
-        font-size: 18px; 
-        margin-right: 5px;
-      }
-      
-      /* Mobile prize animation */
-      .prize-animation { 
-        padding: 25px 15px; 
-        max-width: 95%;
-        margin: 10px;
-      }
-      .prize-icon { 
-        font-size: 50px; 
-      }
-      .prize-title { 
-        font-size: 22px; 
-      }
-      .prize-amount { 
-        font-size: 28px; 
-      }
-      .prize-rank { 
-        font-size: 18px; 
-      }
-      .prize-city { 
-        font-size: 16px; 
-      }
-      .close-prize {
-        padding: 12px 25px;
-        font-size: 16px;
-      }
+      body { padding: 5px; }
+      .header-content { flex-direction: column; gap: 15px; }
+      .logo-section, .ticket-section, .title-section { flex: none; width: 100%; }
+      .logo-img { height: 120px; max-width: 200px; }
+      .ticket-img { height: 80px; max-width: 120px; }
+      .header h1 { font-size: 2.2rem; }
+      .organization { font-size: 1.8rem; }
+      .prize-animation { padding: 30px 20px; }
+      .prize-icon { font-size: 60px; }
+      .prize-title { font-size: 26px; }
+      .prize-amount { font-size: 32px; }
+      .prize-rank { font-size: 22px; }
+      .prize-city { font-size: 18px; }
     }
 
-    /* Extra small mobile devices */
     @media (max-width: 480px) {
-      body { padding: 3px 1px; }
-      .container { padding: 0 3px; }
-      
-      .header h1 { 
-        font-size: 1.5rem; 
-      }
-      .organization { 
-        font-size: 1.2rem; 
-      }
-      
-      .logo-img { 
-        height: 70px; 
-        max-width: 120px; 
-      }
-      .ticket-img { 
-        height: 50px; 
-        max-width: 80px; 
-      }
-      
-      .section-title { 
-        font-size: 1.2rem; 
-      }
-      .trophy-section { 
-        font-size: 1.8rem; 
-      }
-      
-      thead th { 
-        padding: 8px 4px; 
-        font-size: 12px; 
-      }
-      
-      tbody td { 
-        padding: 10px 4px; 
-        font-size: 11px; 
-      }
-      
-      .winning-number { 
-        padding: 10px 12px; 
-        font-size: 20px; 
-      }
-      
-      .sanasili-number { 
-        padding: 8px 10px; 
-        font-size: 18px; 
-      }
-      
-      .trophy-icon { 
-        font-size: 16px; 
-        margin-right: 3px;
-      }
-      
-      .prize { 
-        font-size: 11px; 
-      }
-      .first-prize { 
-        font-size: 13px; 
-      }
-      
-      .city { 
-        font-size: 11px; 
-      }
-      
-      .rank-number { 
-        font-size: 12px; 
-      }
-      
-      /* Extra small mobile prize animation */
-      .prize-animation { 
-        padding: 20px 12px; 
-        border-radius: 15px;
-      }
-      .prize-icon { 
-        font-size: 40px; 
-        margin-bottom: 15px;
-      }
-      .prize-title { 
-        font-size: 20px; 
-        margin-bottom: 12px;
-      }
-      .prize-amount { 
-        font-size: 24px; 
-        margin: 8px 0;
-      }
-      .prize-rank { 
-        font-size: 16px; 
-        margin-bottom: 8px;
-      }
-      .prize-city { 
-        font-size: 14px; 
-        margin-top: 8px;
-      }
-      .close-prize {
-        padding: 10px 20px;
-        font-size: 14px;
-        margin-top: 15px;
-      }
+      .header h1 { font-size: 1.8rem; }
+      .organization { font-size: 1.4rem; }
+      .logo-img { height: 100px; max-width: 150px; }
+      .ticket-img { height: 60px; max-width: 90px; }
+      .prize-animation { padding: 20px 15px; }
+      .prize-icon { font-size: 50px; }
+      .prize-title { font-size: 22px; }
+      .prize-amount { font-size: 28px; }
+      .prize-rank { font-size: 20px; }
+      .prize-city { font-size: 16px; }
     }
-
-    /* Portrait orientation specific */
-    @media (max-width: 768px) and (orientation: portrait) {
-      .header-content {
-        padding: 5px 0;
-      }
-      
-      .logo-section {
-        order: 1;
-      }
-      
-      .title-section {
-        order: 2;
-        margin: 10px 0;
-      }
-      
-      .ticket-section {
-        order: 3;
-      }
-      
-      .table-container {
-        border-radius: 12px;
-      }
-      
-      tbody tr:hover { 
-        transform: none; /* Disable hover scale on mobile for better performance */
-        background: linear-gradient(90deg, #f8fafc, #e2e8f0);
-      }
-    }
-    
     @keyframes logoGlow { from { transform: scale(1); } to { transform: scale(1.05); } }
     @keyframes ticketFloat { from { transform: translateY(0px) rotate(-2deg); } to { transform: translateY(-10px) rotate(2deg); } }
     .header h1 { color:white; font-size:3.5rem; font-weight:700; margin-bottom:0px; text-shadow:2px 2px 4px rgba(0,0,0,0.3); animation:glow 2s ease-in-out infinite alternate; }
@@ -420,6 +183,16 @@
     .trophy-section { font-size:3rem; }
     .text-section { text-align:center; }
     
+    /* Mobile responsive for section titles */
+    @media (max-width: 768px) {
+      .section-title { font-size: 1.8rem; flex-direction: column; gap: 10px; }
+      .trophy-section { font-size: 2.5rem; }
+    }
+    
+    @media (max-width: 480px) {
+      .section-title { font-size: 1.5rem; }
+      .trophy-section { font-size: 2rem; }
+    }
     .table-container { background:white; border-radius:25px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:50px; backdrop-filter:blur(10px); position:relative; }
     .table-container::before { content:''; position:absolute; top:0; left:0; right:0; height:6px; background:var(--primary-gradient); }
     table { width:100%; border-collapse:collapse; }
@@ -432,6 +205,31 @@
     .rank-number { font-weight:700; font-size:22px; color:#667eea; }
     .winning-number { display:inline-flex; align-items:center; padding:25px 35px; border-radius:12px; font-weight:700; font-size:48px; color:white; background:var(--winner-gradient); box-shadow:0 6px 15px rgba(255,107,107,0.3); text-shadow:1px 1px 2px rgba(0,0,0,0.2); animation:pulse 2s infinite; position:relative; overflow:hidden; }
     
+    /* Mobile responsive for tables - Smaller but same layout */
+    @media (max-width: 768px) {
+      thead th { padding: 12px 8px; font-size: 18px; }
+      tbody td { padding: 15px 8px; font-size: 14px; }
+      .rank-number { font-size: 16px; }
+      .winning-number { padding: 15px 20px; font-size: 30px; }
+      .sanasili-number { padding: 12px 18px; font-size: 26px; }
+      .prize { font-size: 16px; }
+      .first-prize { font-size: 18px; }
+      .city { font-size: 16px; }
+      .trophy-icon { font-size: 22px; }
+      .table-container { margin-bottom: 35px; }
+    }
+    
+    @media (max-width: 480px) {
+      thead th { padding: 10px 6px; font-size: 16px; }
+      tbody td { padding: 12px 6px; font-size: 12px; }
+      .winning-number { padding: 12px 18px; font-size: 26px; }
+      .sanasili-number { padding: 10px 15px; font-size: 22px; }
+      .trophy-icon { font-size: 18px; }
+      .prize { font-size: 14px; }
+      .first-prize { font-size: 16px; }
+      .city { font-size: 14px; }
+      tbody tr:hover { transform: scale(1.01); }
+    }
     .winning-number::before { content:''; position:absolute; top:-50%; left:-50%; width:150%; height:150%; background:linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent); animation:shimmer 3s infinite; }
     @keyframes pulse { 0% { transform:scale(1);} 50% { transform:scale(1.05);} 100% { transform:scale(1);} }
     @keyframes shimmer { 0% { transform:translateX(-100%) translateY(-100%) rotate(45deg);} 100% { transform:translateX(100%) translateY(100%) rotate(45deg);} }
@@ -570,7 +368,7 @@
   <script>
     // Prize data
     const winnerData = {
-      '1000001': { rank: '1st Prize', prize: '200,000 LKR', city: 'Colombo', icon: '👑' },
+      '1000021': { rank: '1st Prize', prize: '200,000 LKR', city: 'Colombo', icon: '👑' },
       '1000002': { rank: '2nd Prize', prize: '100,000 LKR', city: 'Galle', icon: '🥈' },
       '1000003': { rank: '3rd Prize', prize: '75,000 LKR', city: 'Kurunegala', icon: '🥉' },
       '1000004': { rank: '4th Prize', prize: '50,000 LKR', city: 'Jaffna', icon: '🏅' },
@@ -592,8 +390,6 @@
 
     // Show prize animation based on URL parameter
     function showPrizeAnimation(ticket) {
-      console.log('Showing animation for ticket:', ticket);
-      
       const prizeAnimation = document.getElementById('prizeAnimation');
       const prizeIcon = document.getElementById('prizeIcon');
       const prizeTitle = document.getElementById('prizeTitle');
@@ -606,7 +402,6 @@
       
       if (winnerData[ticket]) {
         // Winner
-        console.log('Winner found:', winnerData[ticket]);
         prizeAnimation.classList.add('winner-modal');
         const data = winnerData[ticket];
         prizeIcon.textContent = data.icon;
@@ -622,34 +417,11 @@
         createConfetti();
       } else if (consolationData[ticket]) {
         // Consolation Prize
-        console.log('Consolation prize found:', consolationData[ticket]);
         prizeAnimation.classList.add('consolation-modal');
         const data = consolationData[ticket];
         prizeIcon.textContent = '🎉';
         prizeTitle.textContent = 'Congratulations!';
         prizeAmount.textContent = '10,000 LKR';
-        prizeRank.textContent = 'Consolation Prize';
-        prizeCity.textContent = `City: ${data.city}`;
-        
-        // Show animation
-        prizeAnimation.classList.add('active');
-        
-        // Create confetti
-        createConfetti();
-      } else {
-        // No Prize
-        console.log('No prize for ticket:', ticket);
-        prizeAnimation.classList.add('no-win-modal');
-        prizeIcon.textContent = '❌';
-        prizeTitle.textContent = 'Sorry!';
-        prizeAmount.textContent = 'Not a Winner';
-        prizeRank.textContent = 'Please try again next time';
-        prizeCity.textContent = '';
-        
-        // Show animation
-        prizeAnimation.classList.add('active');
-      }
-    }';
         prizeRank.textContent = 'Consolation Prize';
         prizeCity.textContent = `City: ${data.city}`;
         
@@ -673,4 +445,66 @@
     }
 
     function closePrizeAnimation() {
-      const prizeAnimation = document.
+      const prizeAnimation = document.getElementById('prizeAnimation');
+      prizeAnimation.classList.remove('active');
+      
+      // Clear confetti
+      const confetti = document.querySelectorAll('.confetti');
+      confetti.forEach(item => item.remove());
+    }
+
+    function createConfetti() {
+      const container = document.getElementById('prizeAnimation');
+      
+      // Create 50 confetti pieces
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        
+        // Random position
+        const left = Math.random() * 100;
+        confetti.style.left = `${left}%`;
+        
+        // Random size
+        const size = Math.random() * 10 + 5;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        
+        // Random color
+        const colors = ['#f8e71c', '#ff6b6b', '#4ecdc4', '#45b7d1', '#f7fff7'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.backgroundColor = color;
+        
+        // Random animation delay and duration
+        const delay = Math.random() * 2;
+        const duration = Math.random() * 2 + 2;
+        confetti.style.animation = `confettiFall ${duration}s linear ${delay}s infinite`;
+        
+        container.appendChild(confetti);
+      }
+    }
+
+    // Close animation when clicking outside
+    document.getElementById('prizeAnimation').onclick = (e) => {
+      if (e.target === document.getElementById('prizeAnimation')) {
+        closePrizeAnimation();
+      }
+    }
+
+    // QR / URL param check
+    const params = new URLSearchParams(window.location.search);
+    const scannedTicket = params.get('ticket');
+    if (scannedTicket) {
+      showPrizeAnimation(scannedTicket);
+    }
+
+    // REMOVED the automatic demo code that was causing the issue
+    // This prevents the popup from changing after the initial display
+  </script>
+</body>
+</html>
+
+
+
+
+
