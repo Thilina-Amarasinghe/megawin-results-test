@@ -85,6 +85,13 @@
       display: block;
       color: #f8e71c;
     }
+    
+    /* First Prize Icon Animation */
+    .first-prize-modal .prize-icon {
+      color: var(--gold-color);
+      animation: crownAnimation 2s ease-in-out infinite alternate;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
     .consolation-modal .prize-icon {
       color: #10b981;
     }
@@ -104,11 +111,17 @@
       color: #e74c3c;
       animation: zoomInOut 2s infinite;
     }
+
+    /* First Prize Amount Style */
+    .first-prize-modal .prize-amount {
+      color: #e74c3c; /* Red color for the prize amount */
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
     @keyframes zoomInOut {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
+      
     .prize-rank {
       font-size: 28px;
       font-weight: 700;
@@ -510,6 +523,7 @@
   </script>
 </body>
 </html>
+
 
 
 
