@@ -61,13 +61,6 @@
       transition: transform 0.5s ease;
       border: 5px solid #f8e71c;
     }
-    /* First Prize Specific Styles */
-    .first-prize-modal .prize-animation {
-      background: linear-gradient(135deg, #fff9c4 0%, #ffeb3b 100%);
-      border: 5px solid var(--gold-color);
-      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
-    }
-    
     .consolation-modal .prize-animation {
       background: #b3f5d2; /* Light green background for consolation */
       border: 5px solid #10b981;
@@ -84,13 +77,6 @@
       margin-bottom: 20px;
       display: block;
       color: #f8e71c;
-    }
-    
-    /* First Prize Icon Animation */
-    .first-prize-modal .prize-icon {
-      color: var(--gold-color);
-      animation: crownAnimation 2s ease-in-out infinite alternate;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
     }
     .consolation-modal .prize-icon {
       color: #10b981;
@@ -111,17 +97,11 @@
       color: #e74c3c;
       animation: zoomInOut 2s infinite;
     }
-
-    /* First Prize Amount Style */
-    .first-prize-modal .prize-amount {
-      color: #e74c3c; /* Red color for the prize amount */
-      text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
     @keyframes zoomInOut {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
-      
     .prize-rank {
       font-size: 28px;
       font-weight: 700;
@@ -523,8 +503,6 @@
   </script>
 </body>
 </html>
-
-
 
 
 
