@@ -12,9 +12,6 @@
       --winner-gradient: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
       --sanasili-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
       --shadow: 0 10px 30px rgba(0,0,0,0.15);
-      --gold-color: #ffd700;
-      --dark-gold: #daa520;
-      --light-gold: #fff9c4;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
@@ -64,14 +61,6 @@
       transition: transform 0.5s ease;
       border: 5px solid #f8e71c;
     }
-    
-    /* First Prize Specific Styles */
-    .first-prize-modal .prize-animation {
-      background: linear-gradient(135deg, #fff9c4 0%, #ffeb3b 100%);
-      border: 5px solid var(--gold-color);
-      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
-    }
-    
     .consolation-modal .prize-animation {
       background: #b3f5d2; /* Light green background for consolation */
       border: 5px solid #10b981;
@@ -89,14 +78,6 @@
       display: block;
       color: #f8e71c;
     }
-    
-    /* First Prize Icon Animation */
-    .first-prize-modal .prize-icon {
-      color: var(--gold-color);
-      animation: crownAnimation 2s ease-in-out infinite alternate;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-    }
-    
     .consolation-modal .prize-icon {
       color: #10b981;
     }
@@ -116,13 +97,6 @@
       color: #e74c3c;
       animation: zoomInOut 2s infinite;
     }
-    
-    /* First Prize Amount Style */
-    .first-prize-modal .prize-amount {
-      color: #e74c3c; /* Red color for the prize amount */
-      text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-    }
-    
     @keyframes zoomInOut {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
@@ -134,24 +108,11 @@
       margin-bottom: 10px;
       color: #4a4a4a;
     }
-    
-    /* First Prize Rank Style */
-    .first-prize-modal .prize-rank {
-      color: var(--dark-gold);
-    }
-    
     .prize-city {
       font-size: 22px;
       color: #4a5568;
       margin-top: 10px;
     }
-    
-    /* First Prize City Style */
-    .first-prize-modal .prize-city {
-      color: #8b7500;
-      font-weight: 600;
-    }
-    
     .close-prize {
       padding:15px 40px;
       border:none;
@@ -164,60 +125,23 @@
       margin-top:20px;
       transition: all 0.3s ease;
     }
-    
-    /* First Prize Close Button */
-    .first-prize-modal .close-prize {
-      background: var(--dark-gold);
-    }
-    
-    .first-prize-modal .close-prize:hover {
-      background: #b8860b;
-    }
-    
     .close-prize:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
       background: #c0392b;
     }
     
-    /* Crown Animation */
-    @keyframes crownAnimation {
-      0% {
-        transform: scale(1) rotate(0deg);
-        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-      }
-      50% {
-        transform: scale(1.2) rotate(5deg);
-        text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
-      }
-      100% {
-        transform: scale(1.1) rotate(-5deg);
-        text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-      }
-    }
-    
-    /* Gold Confetti Animation */
-    .gold-confetti {
+    /* Confetti animation */
+    .confetti {
       position: absolute;
       width: 10px;
       height: 10px;
-      background-color: var(--gold-color);
+      background-color: #f8e71c;
       opacity: 0;
-      border-radius: 50%;
     }
-    
-    @keyframes goldConfettiFall {
-      0% { 
-        transform: translateY(-100px) rotate(0deg) scale(1); 
-        opacity: 1; 
-      }
-      50% {
-        opacity: 0.8;
-      }
-      100% { 
-        transform: translateY(100vh) rotate(360deg) scale(0.5); 
-        opacity: 0; 
-      }
+    @keyframes confettiFall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
     
     /* Mobile Responsive Styles */
@@ -477,37 +401,20 @@
       prizeAnimation.className = 'prize-animation-container';
       
       if (winnerData[ticket]) {
+        // Winner
+        prizeAnimation.classList.add('winner-modal');
         const data = winnerData[ticket];
+        prizeIcon.textContent = data.icon;
+        prizeTitle.textContent = 'Congratulations!';
+        prizeAmount.textContent = data.prize;
+        prizeRank.textContent = data.rank;
+        prizeCity.textContent = `City: ${data.city}`;
         
-        // Check if it's first prize
-        if (data.rank === '1st Prize') {
-          prizeAnimation.classList.add('first-prize-modal');
-          prizeIcon.textContent = data.icon;
-          prizeTitle.textContent = 'Congratulations!';
-          prizeAmount.textContent = data.prize;
-          prizeRank.textContent = data.rank;
-          prizeCity.textContent = `City: ${data.city}`;
-          
-          // Show animation
-          prizeAnimation.classList.add('active');
-          
-          // Create gold confetti
-          createGoldConfetti();
-        } else {
-          // Other winners
-          prizeAnimation.classList.add('winner-modal');
-          prizeIcon.textContent = data.icon;
-          prizeTitle.textContent = 'Congratulations!';
-          prizeAmount.textContent = data.prize;
-          prizeRank.textContent = data.rank;
-          prizeCity.textContent = `City: ${data.city}`;
-          
-          // Show animation
-          prizeAnimation.classList.add('active');
-          
-          // Create confetti
-          createConfetti();
-        }
+        // Show animation
+        prizeAnimation.classList.add('active');
+        
+        // Create confetti
+        createConfetti();
       } else if (consolationData[ticket]) {
         // Consolation Prize
         prizeAnimation.classList.add('consolation-modal');
@@ -542,7 +449,7 @@
       prizeAnimation.classList.remove('active');
       
       // Clear confetti
-      const confetti = document.querySelectorAll('.confetti, .gold-confetti');
+      const confetti = document.querySelectorAll('.confetti');
       confetti.forEach(item => item.remove());
     }
 
@@ -576,38 +483,6 @@
         container.appendChild(confetti);
       }
     }
-    
-    function createGoldConfetti() {
-      const container = document.getElementById('prizeAnimation');
-      
-      // Create 100 gold confetti pieces
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('gold-confetti');
-        
-        // Random position
-        const left = Math.random() * 100;
-        confetti.style.left = `${left}%`;
-        
-        // Random size
-        const size = Math.random() * 12 + 8;
-        confetti.style.width = `${size}px`;
-        confetti.style.height = `${size}px`;
-        
-        // Gold color with variations
-        const goldColors = ['#ffd700', '#daa520', '#ffdf00', '#f8d568', '#ffec8b'];
-        const color = goldColors[Math.floor(Math.random() * goldColors.length)];
-        confetti.style.backgroundColor = color;
-        confetti.style.boxShadow = '0 0 8px rgba(255, 215, 0, 0.7)';
-        
-        // Random animation delay and duration
-        const delay = Math.random() * 2;
-        const duration = Math.random() * 3 + 3;
-        confetti.style.animation = `goldConfettiFall ${duration}s linear ${delay}s infinite`;
-        
-        container.appendChild(confetti);
-      }
-    }
 
     // Close animation when clicking outside
     document.getElementById('prizeAnimation').onclick = (e) => {
@@ -623,10 +498,13 @@
       showPrizeAnimation(scannedTicket);
     }
 
-    // Demo for 1st prize (remove this in production)
-    setTimeout(() => {
-      showPrizeAnimation('1000021');
-    }, 1000);
+    // REMOVED the automatic demo code that was causing the issue
+    // This prevents the popup from changing after the initial display
   </script>
 </body>
 </html>
+
+
+
+
+
