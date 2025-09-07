@@ -14,6 +14,7 @@
       --shadow: 0 10px 30px rgba(0,0,0,0.15);
       --gold-color: #ffd700;
       --dark-gold: #daa520;
+      --light-gold: #fff9c4;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
@@ -118,8 +119,8 @@
     
     /* First Prize Amount Style */
     .first-prize-modal .prize-amount {
-      color: var(--dark-gold);
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      color: #e74c3c; /* Red color for the prize amount */
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
     }
     
     @keyframes zoomInOut {
@@ -622,8 +623,10 @@
       showPrizeAnimation(scannedTicket);
     }
 
-    // REMOVED the automatic demo code that was causing the issue
-    // This prevents the popup from changing after the initial display
+    // Demo for 1st prize (remove this in production)
+    setTimeout(() => {
+      showPrizeAnimation('1000021');
+    }, 1000);
   </script>
 </body>
 </html>
