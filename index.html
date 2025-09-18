@@ -14,34 +14,30 @@
       --shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px; color:#fff;}
     .container { max-width:1200px; margin:0 auto;}
     .header { text-align:center; margin-bottom:20px; }
     .header-content { display:flex; justify-content:space-between; align-items:center; max-width:100%; margin:0 auto; position:relative; }
     .logo-section, .ticket-section { flex:1; display:flex; justify-content:center; align-items:center; }
     .title-section { flex:2; text-align:center; }
-    .logo { display:flex; justify-content:center; align-items:center; animation:logoGlow 3s ease-in-out infinite alternate; }
-    .logo-img { width:auto; height:250px; max-width:500px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
-    .logo-img:hover { transform: scale(1.1); }
-    .ticket { display:flex; justify-content:center; align-items:center; animation:ticketFloat 2s ease-in-out infinite alternate; }
-    .ticket-img { width:auto; height:160px; max-width:240px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
-    .ticket-img:hover { transform: scale(1.1) rotate(3deg); }
+    .logo-img { width:auto; height:150px; max-width:300px; object-fit:contain; }
+    .ticket-img { width:auto; height:120px; max-width:200px; object-fit:contain; }
 
-    /* Prize Animation Container */
+    /* Table styles */
+    table { width:100%; border-collapse:collapse; margin:20px 0; background:#fff; color:#000; border-radius:10px; overflow:hidden; }
+    table th, table td { padding:12px; text-align:center; border:1px solid #ddd; }
+    table th { background:#667eea; color:#fff; }
+    h2 { margin-top:20px; color:#ffeb3b; text-align:center; }
+
+    /* Prize / Pre-draw Popup */
     .prize-animation-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex; justify-content: center; align-items: center;
       z-index: 1000;
       background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(5px);
-      opacity: 0;
-      visibility: hidden;
+      opacity: 0; visibility: hidden;
       transition: all 0.3s ease;
     }
     .prize-animation-container.active { opacity: 1; visibility: visible; }
@@ -54,25 +50,29 @@
       width: 90%;
       position: relative;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      transform: translateY(50px);
-      transition: transform 0.5s ease;
       border: 5px solid #f8e71c;
     }
-    .consolation-modal .prize-animation { background: #b3f5d2; border: 5px solid #10b981; }
-    .no-win-modal .prize-animation { background: #ffe6e6; border: 5px solid #e74c3c; }
-    .prize-animation-container.active .prize-animation { transform: translateY(0); }
     .prize-icon { font-size: 80px; margin-bottom: 20px; display: block; color: #f8e71c; }
-    .consolation-modal .prize-icon { color: #10b981; }
-    .no-win-modal .prize-icon { color: #e74c3c; }
     .prize-title { font-size: 32px; font-weight: 700; margin-bottom: 15px; color: #4a4a4a; }
     .prize-amount { font-size: 42px; font-weight: 800; margin: 10px 0; color: #e74c3c; animation: zoomInOut 2s infinite; }
     @keyframes zoomInOut { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-    .prize-rank { font-size: 28px; font-weight: 700; margin-bottom: 10px; color: #4a4a4a; }
-    .prize-city { font-size: 22px; color: #4a5568; margin-top: 10px; }
-    .close-prize { padding:15px 40px; border:none; background: #e74c3c; color:white; border-radius:12px; cursor:pointer; font-size:18px; font-weight:600; margin-top:20px; transition: all 0.3s ease; }
-    .close-prize:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4); background: #c0392b; }
-    .confetti { position: absolute; width: 10px; height: 10px; background-color: #f8e71c; opacity: 0; }
-    @keyframes confettiFall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+    .prize-rank { font-size: 24px; font-weight: 600; margin-bottom: 10px; color: #4a4a4a; }
+    .prize-city { font-size: 18px; color: #4a5568; margin-top: 10px; }
+    .close-prize { padding:12px 30px; border:none; background: #e74c3c; color:white; border-radius:12px; cursor:pointer; font-size:16px; font-weight:600; margin-top:20px; }
+    .close-prize:hover { background: #c0392b; }
+
+    /* Pre-draw date animate */
+    #drawDateAnimate {
+      font-size: 40px;
+      font-weight: 900;
+      color: #e74c3c;
+      animation: pulseDate 2s infinite;
+    }
+    @keyframes pulseDate {
+      0% { transform: scale(1); color:#e74c3c; }
+      50% { transform: scale(1.2); color:#2ecc71; }
+      100% { transform: scale(1); color:#e74c3c; }
+    }
   </style>
 </head>
 <body>
@@ -80,22 +80,60 @@
     <!-- Header -->
     <div class="header">
       <div class="header-content">
-        <div class="logo-section"><div class="logo"><img src="images/logo.png" alt="DLB Logo" class="logo-img"></div></div>
+        <div class="logo-section"><img src="images/logo.png" alt="DLB Logo" class="logo-img"></div>
         <div class="title-section">
           <h1>Raffle Draw Results</h1>
           <h1>2025.12.26</h1>
           <h2 class="organization">DLB Welfare Society</h2>
         </div>
-        <div class="ticket-section"><div class="ticket"><img src="images/ticket.png" alt="Raffle Ticket" class="ticket-img"></div></div>
+        <div class="ticket-section"><img src="images/ticket.png" alt="Raffle Ticket" class="ticket-img"></div>
       </div>
     </div>
 
-    <!-- Tables remain as before... -->
-    <!-- (same winners + consolation HTML as your file) -->
+    <!-- Winners Table -->
+    <h2>Winners</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticket No</th>
+          <th>Prize</th>
+          <th>Rank</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody id="winnersTable"></tbody>
+    </table>
 
+    <!-- Consolations Table -->
+    <h2>Consolation Prizes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticket No</th>
+          <th>Prize</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody id="consolationsTable"></tbody>
+    </table>
   </div>
 
-  <!-- Prize Animation Container -->
+  <!-- Pre-draw Popup -->
+  <div class="prize-animation-container" id="preDrawPopup">
+    <div class="prize-animation">
+      <div class="prize-icon">⏳</div>
+      <div class="prize-title">Draw Not Started Yet</div>
+      <div class="prize-amount" id="drawDateAnimate"></div>
+      <div class="prize-rank">Results will be published immediately after the draw</div>
+      <div class="prize-city">
+        and on <a href="https://www.welfare.dlb.lk" target="_blank">www.welfare.dlb.lk</a><br>
+        Also published in Dinamina, Thinakural, and Daily News newspapers
+      </div>
+      <button class="close-prize" onclick="closePreDrawPopup()">Close</button>
+    </div>
+  </div>
+
+  <!-- Prize Animation Popup -->
   <div class="prize-animation-container" id="prizeAnimation">
     <div class="prize-animation">
       <div class="prize-icon" id="prizeIcon">🎉</div>
@@ -113,6 +151,41 @@
       return await res.json();
     }
 
+    async function loadTables() {
+      const drawData = await fetchDrawData();
+      const winnersTable = document.getElementById('winnersTable');
+      const consolationsTable = document.getElementById('consolationsTable');
+
+      // Winners
+      if (drawData.winners) {
+        Object.entries(drawData.winners).forEach(([ticket, data]) => {
+          winnersTable.innerHTML += `
+            <tr>
+              <td>${ticket}</td>
+              <td>${data.prize}</td>
+              <td>${data.rank}</td>
+              <td>${data.city}</td>
+            </tr>
+          `;
+        });
+      }
+
+      // Consolations
+      if (drawData.consolations) {
+        Object.entries(drawData.consolations).forEach(([ticket, data]) => {
+          const city = data.city || data;
+          consolationsTable.innerHTML += `
+            <tr>
+              <td>${ticket}</td>
+              <td>10,000 LKR</td>
+              <td>${city}</td>
+            </tr>
+          `;
+        });
+      }
+    }
+
+    // Prize Popup (scan)
     async function showPrizeAnimation(ticket) {
       const prizeAnimation = document.getElementById('prizeAnimation');
       const prizeIcon = document.getElementById('prizeIcon');
@@ -122,46 +195,27 @@
       const prizeCity = document.getElementById('prizeCity');
 
       prizeAnimation.className = 'prize-animation-container';
-
       const drawData = await fetchDrawData();
-      const now = new Date();
-      const drawDate = new Date(drawData.drawDate);
-
-      if (now < drawDate || !drawData.published) {
-        prizeAnimation.classList.add('no-win-modal');
-        prizeIcon.textContent = 'ℹ️';
-        prizeTitle.textContent = 'Results Information';
-        prizeAmount.innerHTML = "Results: Published immediately after the draw";
-        prizeRank.innerHTML = "and on <a href='https://www.welfare.dlb.lk' target='_blank'>www.welfare.dlb.lk</a>";
-        prizeCity.innerHTML = "Also published in Dinamina, Thinakural, and Daily News newspapers";
-        prizeAnimation.classList.add('active');
-        return;
-      }
 
       if (drawData.winners && drawData.winners[ticket]) {
         const data = drawData.winners[ticket];
-        prizeAnimation.classList.add('winner-modal');
         prizeIcon.textContent = '👑';
         prizeTitle.textContent = 'Congratulations!';
         prizeAmount.textContent = data.prize;
         prizeRank.textContent = data.rank;
         prizeCity.textContent = `City: ${data.city}`;
         prizeAnimation.classList.add('active');
-        createConfetti();
       }
       else if (drawData.consolations && drawData.consolations[ticket]) {
         const city = drawData.consolations[ticket].city || drawData.consolations[ticket];
-        prizeAnimation.classList.add('consolation-modal');
         prizeIcon.textContent = '🎉';
         prizeTitle.textContent = 'Congratulations!';
         prizeAmount.textContent = '10,000 LKR';
         prizeRank.textContent = 'Consolation Prize';
         prizeCity.textContent = `City: ${city}`;
         prizeAnimation.classList.add('active');
-        createConfetti();
       }
       else {
-        prizeAnimation.classList.add('no-win-modal');
         prizeIcon.textContent = '❌';
         prizeTitle.textContent = 'Sorry!';
         prizeAmount.textContent = 'Not a Winner';
@@ -172,31 +226,28 @@
     }
 
     function closePrizeAnimation() {
-      const prizeAnimation = document.getElementById('prizeAnimation');
-      prizeAnimation.classList.remove('active');
-      document.querySelectorAll('.confetti').forEach(item => item.remove());
+      document.getElementById('prizeAnimation').classList.remove('active');
     }
 
-    function createConfetti() {
-      const container = document.getElementById('prizeAnimation');
-      for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = `${Math.random() * 100}%`;
-        const size = Math.random() * 10 + 5;
-        confetti.style.width = `${size}px`; confetti.style.height = `${size}px`;
-        const colors = ['#f8e71c','#ff6b6b','#4ecdc4','#45b7d1','#f7fff7'];
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        const delay = Math.random() * 2;
-        const duration = Math.random() * 2 + 2;
-        confetti.style.animation = `confettiFall ${duration}s linear ${delay}s infinite`;
-        container.appendChild(confetti);
+    function closePreDrawPopup() {
+      document.getElementById('preDrawPopup').classList.remove('active');
+    }
+
+    async function checkDrawDate() {
+      const drawData = await fetchDrawData();
+      const now = new Date();
+      const drawDate = new Date(drawData.drawDate);
+
+      if (now < drawDate) {
+        document.getElementById('drawDateAnimate').textContent =
+          "Draw Date: " + drawDate.toLocaleString();
+        document.getElementById('preDrawPopup').classList.add('active');
       }
     }
 
-    document.getElementById('prizeAnimation').onclick = (e) => {
-      if (e.target === document.getElementById('prizeAnimation')) closePrizeAnimation();
-    }
+    // Auto-run
+    loadTables();
+    checkDrawDate();
 
     const params = new URLSearchParams(window.location.search);
     const scannedTicket = params.get('ticket');
