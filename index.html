@@ -6,7 +6,6 @@
   <title>Raffle Draw Results</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* --- Existing CSS 그대로 --- */
     :root {
       --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
@@ -17,11 +16,9 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
     .container { max-width:1200px; margin:0 auto;}
-    /* ... (ඉහත file එකේ සියලුම CSS 그대로 තියෙනවා) ... */
-
-    /* --- Pre-draw Modal Styles --- */
+    /* ---- Pre Draw Modal ---- */
     #preDrawModal {
-      display:flex;
+      display:none;
       position:fixed;
       top:0; left:0;
       width:100%; height:100%;
@@ -40,16 +37,8 @@
       box-shadow:0 10px 30px rgba(0,0,0,0.4);
       animation: modalSlideIn 0.4s ease-out;
     }
-    .pre-draw-content h2 {
-      font-size:26px;
-      margin-bottom:15px;
-      color:#333;
-    }
-    .pre-draw-content p {
-      font-size:18px;
-      margin-bottom:10px;
-      color:#444;
-    }
+    .pre-draw-content h2 { font-size:26px; margin-bottom:15px; color:#333; }
+    .pre-draw-content p { font-size:18px; margin-bottom:10px; color:#444; }
     .pre-draw-content button {
       margin-top:20px;
       padding:12px 30px;
@@ -60,10 +49,25 @@
       border-radius:8px;
       cursor:pointer;
     }
+    @keyframes modalSlideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    /* ---- Existing styles for tables + modals (unchanged) ---- */
+    .table-container { background:white; border-radius:25px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:50px; }
+    table { width:100%; border-collapse:collapse; }
+    thead th { text-align:left; padding:20px; font-size:20px; font-weight:700; color:white; background:#059669; }
+    tbody td { padding:15px; font-size:18px; color:#2d3748; }
+    .winning-number { font-weight:700; font-size:26px; color:white; background:var(--winner-gradient); padding:10px 20px; border-radius:8px; }
+    .sanasili-number { font-weight:600; font-size:22px; color:white; background:var(--sanasili-gradient); padding:8px 15px; border-radius:6px; }
+    /* Ticket modal styles ... keep your existing CSS */
+    #ticketModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
+    .modal-content { background:white; padding:30px; border-radius:15px; text-align:center; max-width:500px; width:90%; }
+    #closeModal { margin-top:15px; padding:10px 25px; border:none; background:var(--primary-gradient); color:white; border-radius:8px; cursor:pointer; }
   </style>
 </head>
 <body>
-  <!-- Pre Draw Modal -->
+  <!-- Pre Draw Popup -->
   <div id="preDrawModal">
     <div class="pre-draw-content">
       <h2>📅 Draw Date: 2025.12.21</h2>
@@ -73,176 +77,91 @@
     </div>
   </div>
 
-  <div class="container">
-    <!-- Header -->
-    <div class="header">
-      <div class="header-content">
-        <div class="logo-section">
-          <div class="logo">
-            <img src="images/logo.png" alt="DLB Logo" class="logo-img">
-          </div>
-        </div>
-        <div class="title-section">
-          <h1>Raffle Draw Results</h1>
-          <h1>2025.12.26</h1>
-          <h2 class="organization">DLB Welfare Society</h2>
-        </div>
-        <div class="ticket-section">
-          <div class="ticket">
-            <img src="images/ticket.png" alt="Raffle Ticket" class="ticket-img">
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Results Tables -->
+  <div class="container" id="resultsContainer" style="display:none;">
+    <h1 style="text-align:center; color:white;">Raffle Draw Results</h1>
+    <h2 style="text-align:center; color:yellow;">DLB Welfare Society</h2>
 
-    <!-- Winners Section -->
-    <div class="section-title">
-      <div class="trophy-section">🏆</div>
-      <div class="text-section">
-        <div>ජයග්‍රාහකයින්</div>
-        <div>Winners</div>
-      </div>
-    </div>
-
+    <!-- Winners Table -->
     <div class="table-container">
-      <table class="winners-table">
+      <table>
         <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Winning Number</th>
-            <th>Prize</th>
-            <th>City</th>
-          </tr>
+          <tr><th>Rank</th><th>Winning Number</th><th>Prize</th><th>City</th></tr>
         </thead>
         <tbody>
-          <tr class="winner-row">
-            <td class="rank-number">1<sup>st</sup> Prize</td>
-            <td><span class="winning-number"><span class="trophy-icon">👑</span>1000021</span></td>
-            <td class="prize first-prize">200,000 LKR</td>
-            <td class="city">Colombo</td>
-          </tr>
-          <tr><td class="rank-number">2<sup>nd</sup> Prize</td><td><span class="winning-number">1000002</span></td><td class="prize">100,000 LKR</td><td class="city">Galle</td></tr>
-          <tr><td class="rank-number">3<sup>rd</sup> Prize</td><td><span class="winning-number">1000003</span></td><td class="prize">75,000 LKR</td><td class="city">Kurunegala</td></tr>
-          <tr><td class="rank-number">4<sup>th</sup> Prize</td><td><span class="winning-number">1000004</span></td><td class="prize">50,000 LKR</td><td class="city">Jaffna</td></tr>
-          <tr><td class="rank-number">5<sup>th</sup> Prize</td><td><span class="winning-number">1000005</span></td><td class="prize">25,000 LKR</td><td class="city">Anuradhapura</td></tr>
+          <tr><td>1st Prize</td><td><span class="winning-number">1000021</span></td><td>200,000 LKR</td><td>Colombo</td></tr>
+          <tr><td>2nd Prize</td><td><span class="winning-number">1000002</span></td><td>100,000 LKR</td><td>Galle</td></tr>
+          <tr><td>3rd Prize</td><td><span class="winning-number">1000003</span></td><td>75,000 LKR</td><td>Kurunegala</td></tr>
+          <tr><td>4th Prize</td><td><span class="winning-number">1000004</span></td><td>50,000 LKR</td><td>Jaffna</td></tr>
+          <tr><td>5th Prize</td><td><span class="winning-number">1000005</span></td><td>25,000 LKR</td><td>Anuradhapura</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Consolation Section -->
-    <div class="section-title">
-      <div class="text-section">
-        <div>10,000 බැගින් වූ සැනසිලි ත්‍යාග</div>
-        <div>Consolation prizes of 10,000 each</div>
-      </div>
-    </div>
-
+    <!-- Consolation Table -->
     <div class="table-container">
-      <table class="sanasili-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Consolation prizes</th>
-            <th>City</th>
-          </tr>
-        </thead>
+      <table>
+        <thead><tr><th>#</th><th>Consolation Number</th><th>City</th></tr></thead>
         <tbody>
-          <tr><td class="rank-number">1</td><td><span class="sanasili-number">304050</span></td><td class="city">Kandy</td></tr>
-          <tr><td class="rank-number">2</td><td><span class="sanasili-number">202020</span></td><td class="city">Matara</td></tr>
-          <tr><td class="rank-number">3</td><td><span class="sanasili-number">303030</span></td><td class="city">Negombo</td></tr>
-          <tr><td class="rank-number">4</td><td><span class="sanasili-number">404040</span></td><td class="city">Trinco</td></tr>
-          <tr><td class="rank-number">5</td><td><span class="sanasili-number">505050</span></td><td class="city">Ratnapura</td></tr>
-          <tr><td class="rank-number">6</td><td><span class="sanasili-number">606060</span></td><td class="city">Gampaha</td></tr>
-          <tr><td class="rank-number">7</td><td><span class="sanasili-number">707070</span></td><td class="city">Badulla</td></tr>
-          <tr><td class="rank-number">8</td><td><span class="sanasili-number">808080</span></td><td class="city">Monaragala</td></tr>
-          <tr><td class="rank-number">9</td><td><span class="sanasili-number">909090</span></td><td class="city">Polonnaruwa</td></tr>
-          <tr><td class="rank-number">10</td><td><span class="sanasili-number">902233</span></td><td class="city">Hambantota</td></tr>
+          <tr><td>1</td><td><span class="sanasili-number">304050</span></td><td>Kandy</td></tr>
+          <tr><td>2</td><td><span class="sanasili-number">202020</span></td><td>Matara</td></tr>
+          <tr><td>3</td><td><span class="sanasili-number">303030</span></td><td>Negombo</td></tr>
+          <tr><td>4</td><td><span class="sanasili-number">404040</span></td><td>Trinco</td></tr>
+          <tr><td>5</td><td><span class="sanasili-number">505050</span></td><td>Ratnapura</td></tr>
+          <tr><td>6</td><td><span class="sanasili-number">606060</span></td><td>Gampaha</td></tr>
+          <tr><td>7</td><td><span class="sanasili-number">707070</span></td><td>Badulla</td></tr>
+          <tr><td>8</td><td><span class="sanasili-number">808080</span></td><td>Monaragala</td></tr>
+          <tr><td>9</td><td><span class="sanasili-number">909090</span></td><td>Polonnaruwa</td></tr>
+          <tr><td>10</td><td><span class="sanasili-number">902233</span></td><td>Hambantota</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Existing Modal -->
+  <!-- Ticket Modal -->
   <div id="ticketModal">
     <div class="modal-content">
-      <div class="modal-icon" id="modalIcon"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-ticket-number" id="modalTicketNumber"></div>
-      <div class="modal-details" id="modalDetails"></div>
+      <div id="modalIcon">🎟️</div>
+      <div id="modalTitle">Ticket Result</div>
+      <div id="modalTicketNumber"></div>
+      <div id="modalDetails"></div>
       <button id="closeModal">Close</button>
     </div>
   </div>
 
   <script>
-    // Close Pre Draw Modal
-    function closePreDraw(){
-      document.getElementById('preDrawModal').style.display='none';
-    }
+    // ---- Pre-draw Logic ----
+    const drawDate = new Date("2025-12-21T23:59:59").getTime();
+    const now = new Date().getTime();
+    const preDrawModal = document.getElementById("preDrawModal");
+    const resultsContainer = document.getElementById("resultsContainer");
+    const ticketModal = document.getElementById("ticketModal");
 
-    // Updated Prize data (JSON)
-    const winnerData = {
-      '1000021': { rank: '1st Prize', prize: '200,000 LKR', city: 'Colombo', icon: '👑' },
-      '1000002': { rank: '2nd Prize', prize: '100,000 LKR', city: 'Galle', icon: '🥈' },
-      '1000003': { rank: '3rd Prize', prize: '75,000 LKR', city: 'Kurunegala', icon: '🥉' },
-      '1000004': { rank: '4th Prize', prize: '50,000 LKR', city: 'Jaffna', icon: '🏆' },
-      '1000005': { rank: '5th Prize', prize: '25,000 LKR', city: 'Anuradhapura', icon: '🏆' }
-    };
-
-    const consolationData = {
-      '304050': { city: 'Kandy' },
-      '202020': { city: 'Matara' },
-      '303030': { city: 'Negombo' },
-      '404040': { city: 'Trinco' },
-      '505050': { city: 'Ratnapura' },
-      '606060': { city: 'Gampaha' },
-      '707070': { city: 'Badulla' },
-      '808080': { city: 'Monaragala' },
-      '909090': { city: 'Polonnaruwa' },
-      '902233': { city: 'Hambantota' }
-    };
-
-    /* ---- Existing checkTicket function 그대로 ---- */
-    function checkTicket(ticket) {
-      const modal = document.getElementById('ticketModal');
-      const modalIcon = document.getElementById('modalIcon');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalTicketNumber = document.getElementById('modalTicketNumber');
-      const modalDetails = document.getElementById('modalDetails');
-      modal.className = '';
-      modal.classList.add('modal');
-      modalTicketNumber.textContent = ticket;
-      if (winnerData[ticket]) {
-        modal.classList.add('winner-modal');
-        const data = winnerData[ticket];
-        modalIcon.textContent = data.icon;
-        modalTitle.innerHTML = `🎉 සුභ පැතුම්!<br>Congratulations!`;
-        modalDetails.innerHTML = `<div class="modal-rank">${data.rank}</div><div class="modal-prize">${data.prize}</div><div class="modal-city">📍 ${data.city}</div>`;
-      } else if (consolationData[ticket]) {
-        modal.classList.add('consolation-modal');
-        const data = consolationData[ticket];
-        modalIcon.textContent = '🎉';
-        modalTitle.innerHTML = `සුභ පැතුම්!<br>Consolation Prize!`;
-        modalDetails.innerHTML = `<div class="modal-rank">සැනසිලි ත්‍යාගය</div><div class="modal-prize">10,000 LKR</div><div class="modal-city">📍 ${data.city}</div>`;
-      } else {
-        modal.classList.add('no-win-modal');
-        modalIcon.textContent = '😔';
-        modalTitle.innerHTML = `කණගාටුයි!<br>Sorry!`;
-        modalDetails.innerHTML = `<div style="font-size: 30px; color: #6b7280; margin: 20px 0;">ඔබගේ ටිකට් පත්‍රය මෙවර ත්‍යාගයක් හිමිව නොමැත.<br>Your ticket did not win this time.</div>`;
+    if (now <= drawDate) {
+      // Before draw date
+      preDrawModal.style.display = "flex";
+      resultsContainer.style.display = "none";
+      function closePreDraw() {
+        preDrawModal.style.display = "none";
+        // keep results hidden
       }
-      modal.style.display = 'flex';
-    }
+    } else {
+      // After draw date
+      preDrawModal.style.display = "none";
+      resultsContainer.style.display = "block";
 
-    document.getElementById('closeModal').onclick = () => {
-      document.getElementById('ticketModal').style.display = 'none';
+      document.getElementById('closeModal').onclick = () => {
+        ticketModal.style.display = 'none';
+        resultsContainer.style.display = 'block';
+      };
+
+      ticketModal.onclick = (e) => {
+        if (e.target === ticketModal) {
+          ticketModal.style.display = 'none';
+          resultsContainer.style.display = 'block';
+        }
+      };
     }
-    document.getElementById('ticketModal').onclick = (e) => {
-      if (e.target === document.getElementById('ticketModal')) {
-        document.getElementById('ticketModal').style.display = 'none';
-      }
-    }
-    const params = new URLSearchParams(window.location.search);
-    const scannedTicket = params.get('ticket');
-    if (scannedTicket) { checkTicket(scannedTicket); }
   </script>
 </body>
 </html>
