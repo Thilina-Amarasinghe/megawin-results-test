@@ -16,6 +16,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
     .container { max-width:1200px; margin:0 auto;}
+
     /* ---- Pre Draw Modal ---- */
     #preDrawModal {
       display:none;
@@ -53,14 +54,16 @@
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-    /* ---- Existing styles for tables + modals (unchanged) ---- */
-    .table-container { background:white; border-radius:25px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:50px; }
+
+    /* ---- Table Styles ---- */
+    .table-container { background:white; border-radius:25px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:40px; }
     table { width:100%; border-collapse:collapse; }
-    thead th { text-align:left; padding:20px; font-size:20px; font-weight:700; color:white; background:#059669; }
+    thead th { text-align:left; padding:15px; font-size:20px; font-weight:700; color:white; background:#059669; }
     tbody td { padding:15px; font-size:18px; color:#2d3748; }
-    .winning-number { font-weight:700; font-size:26px; color:white; background:var(--winner-gradient); padding:10px 20px; border-radius:8px; }
-    .sanasili-number { font-weight:600; font-size:22px; color:white; background:var(--sanasili-gradient); padding:8px 15px; border-radius:6px; }
-    /* Ticket modal styles ... keep your existing CSS */
+    .winning-number { font-weight:700; font-size:22px; color:white; background:var(--winner-gradient); padding:10px 20px; border-radius:8px; }
+    .sanasili-number { font-weight:600; font-size:20px; color:white; background:var(--sanasili-gradient); padding:8px 15px; border-radius:6px; }
+
+    /* ---- Ticket Modal ---- */
     #ticketModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
     .modal-content { background:white; padding:30px; border-radius:15px; text-align:center; max-width:500px; width:90%; }
     #closeModal { margin-top:15px; padding:10px 25px; border:none; background:var(--primary-gradient); color:white; border-radius:8px; cursor:pointer; }
@@ -70,7 +73,7 @@
   <!-- Pre Draw Popup -->
   <div id="preDrawModal">
     <div class="pre-draw-content">
-      <h2>📅 Draw Date: 2025.12.22</h2>
+      <h2>📅 Draw Date: 2025.12.21</h2>
       <p>Results Published immediately after the draw and on <br><b>www.welfare.dlb.lk</b></p>
       <p>Also published in <b>Dinamina</b>, <b>Thinakural</b>, and <b>Daily News</b> newspapers.</p>
       <button onclick="closePreDraw()">OK</button>
@@ -84,36 +87,19 @@
 
     <!-- Winners Table -->
     <div class="table-container">
-      <table>
+      <table id="winnersTable">
         <thead>
           <tr><th>Rank</th><th>Winning Number</th><th>Prize</th><th>City</th></tr>
         </thead>
-        <tbody>
-          <tr><td>1st Prize</td><td><span class="winning-number">1000021</span></td><td>200,000 LKR</td><td>Colombo</td></tr>
-          <tr><td>2nd Prize</td><td><span class="winning-number">1000002</span></td><td>100,000 LKR</td><td>Galle</td></tr>
-          <tr><td>3rd Prize</td><td><span class="winning-number">1000003</span></td><td>75,000 LKR</td><td>Kurunegala</td></tr>
-          <tr><td>4th Prize</td><td><span class="winning-number">1000004</span></td><td>50,000 LKR</td><td>Jaffna</td></tr>
-          <tr><td>5th Prize</td><td><span class="winning-number">1000005</span></td><td>25,000 LKR</td><td>Anuradhapura</td></tr>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
 
     <!-- Consolation Table -->
     <div class="table-container">
-      <table>
+      <table id="consolationTable">
         <thead><tr><th>#</th><th>Consolation Number</th><th>City</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td><span class="sanasili-number">304050</span></td><td>Kandy</td></tr>
-          <tr><td>2</td><td><span class="sanasili-number">202020</span></td><td>Matara</td></tr>
-          <tr><td>3</td><td><span class="sanasili-number">303030</span></td><td>Negombo</td></tr>
-          <tr><td>4</td><td><span class="sanasili-number">404040</span></td><td>Trinco</td></tr>
-          <tr><td>5</td><td><span class="sanasili-number">505050</span></td><td>Ratnapura</td></tr>
-          <tr><td>6</td><td><span class="sanasili-number">606060</span></td><td>Gampaha</td></tr>
-          <tr><td>7</td><td><span class="sanasili-number">707070</span></td><td>Badulla</td></tr>
-          <tr><td>8</td><td><span class="sanasili-number">808080</span></td><td>Monaragala</td></tr>
-          <tr><td>9</td><td><span class="sanasili-number">909090</span></td><td>Polonnaruwa</td></tr>
-          <tr><td>10</td><td><span class="sanasili-number">902233</span></td><td>Hambantota</td></tr>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
   </div>
@@ -130,39 +116,103 @@
   </div>
 
   <script>
-    // ---- Pre-draw Logic ----
-    const drawDate = new Date("2025-12-21T23:59:59").getTime();
-    const now = new Date().getTime();
-    const preDrawModal = document.getElementById("preDrawModal");
-    const resultsContainer = document.getElementById("resultsContainer");
-    const ticketModal = document.getElementById("ticketModal");
+    async function loadDrawData() {
+      try {
+        const response = await fetch("draw.json");
+        const data = await response.json();
 
-    if (now <= drawDate) {
-      // Before draw date
-      preDrawModal.style.display = "flex";
-      resultsContainer.style.display = "none";
-      function closePreDraw() {
-        preDrawModal.style.display = "none";
-        // keep results hidden
-      }
-    } else {
-      // After draw date
-      preDrawModal.style.display = "none";
-      resultsContainer.style.display = "block";
+        const winnersTableBody = document.querySelector("#winnersTable tbody");
+        const consolationTableBody = document.querySelector("#consolationTable tbody");
+        winnersTableBody.innerHTML = "";
+        consolationTableBody.innerHTML = "";
 
-      document.getElementById('closeModal').onclick = () => {
-        ticketModal.style.display = 'none';
-        resultsContainer.style.display = 'block';
-      };
+        // Winners Table Fill
+        Object.entries(data.winners).forEach(([num, info]) => {
+          winnersTableBody.innerHTML += `
+            <tr>
+              <td>${info.rank}</td>
+              <td><span class="winning-number">${num}</span></td>
+              <td>${info.prize}</td>
+              <td>${info.city}</td>
+            </tr>`;
+        });
 
-      ticketModal.onclick = (e) => {
-        if (e.target === ticketModal) {
-          ticketModal.style.display = 'none';
-          resultsContainer.style.display = 'block';
+        // Consolations Table Fill
+        let i = 1;
+        Object.entries(data.consolations).forEach(([num, info]) => {
+          consolationTableBody.innerHTML += `
+            <tr>
+              <td>${i++}</td>
+              <td><span class="sanasili-number">${num}</span></td>
+              <td>${info.city}</td>
+            </tr>`;
+        });
+
+        // Save data globally for ticket check
+        window.drawData = data;
+
+        // Pre-draw logic
+        const drawDate = new Date(data.drawDate).getTime();
+        const now = new Date().getTime();
+        const preDrawModal = document.getElementById("preDrawModal");
+        const resultsContainer = document.getElementById("resultsContainer");
+        const ticketModal = document.getElementById("ticketModal");
+
+        if (now <= drawDate) {
+          preDrawModal.style.display = "flex";
+          resultsContainer.style.display = "none";
+          window.closePreDraw = function() {
+            preDrawModal.style.display = "none";
+          };
+        } else {
+          preDrawModal.style.display = "none";
+          resultsContainer.style.display = "block";
+
+          document.getElementById('closeModal').onclick = () => {
+            ticketModal.style.display = 'none';
+            resultsContainer.style.display = 'block';
+          };
+          ticketModal.onclick = (e) => {
+            if (e.target === ticketModal) {
+              ticketModal.style.display = 'none';
+              resultsContainer.style.display = 'block';
+            }
+          };
         }
-      };
+
+      } catch (err) {
+        console.error("Error loading draw.json:", err);
+      }
     }
+
+    // Ticket check function
+    function checkTicket(ticket) {
+      const modal = document.getElementById('ticketModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalTicketNumber = document.getElementById('modalTicketNumber');
+      const modalDetails = document.getElementById('modalDetails');
+
+      modalTicketNumber.textContent = ticket;
+      const data = window.drawData;
+
+      if (data.winners[ticket]) {
+        const w = data.winners[ticket];
+        modalTitle.innerHTML = "🎉 Congratulations!";
+        modalDetails.innerHTML = `<div>${w.rank}</div><div>${w.prize}</div><div>📍 ${w.city}</div>`;
+      } else if (data.consolations[ticket]) {
+        const c = data.consolations[ticket];
+        modalTitle.innerHTML = "🎉 Consolation Prize!";
+        modalDetails.innerHTML = `<div>10,000 LKR</div><div>📍 ${c.city}</div>`;
+      } else {
+        modalTitle.innerHTML = "😔 Sorry!";
+        modalDetails.innerHTML = `<div>Your ticket did not win this time.</div>`;
+      }
+
+      modal.style.display = 'flex';
+    }
+
+    // Run on load
+    window.onload = loadDrawData;
   </script>
 </body>
 </html>
-
