@@ -714,6 +714,27 @@
     }');
         const data = consolationData[ticket];
         modalIcon.textContent = '🎉';
+        modalTitle.innerHTML = 'Congratulations!';
+        modalDetails.innerHTML = `
+          <div class="modal-prize">10,000 LKR</div>
+          <div class="modal-rank">Consolation Prize</div>
+          <div class="modal-city">City: ${data.city}</div>
+        `;
+      } else {
+        // No Prize - Pink theme like image
+        modal.classList.add('no-win-modal');
+        modalIcon.textContent = '✕';
+        modalTitle.innerHTML = 'Sorry!';
+        modalDetails.innerHTML = `
+          <div style="font-size: 18px; color: #c0392b; font-weight: 600;">Not a Winner</div>
+          <div style="font-size: 14px; color: #7f8c8d; margin-top: 10px;">Please try again next time</div>
+        `;
+      }
+      
+      modal.style.display = 'flex';
+    }');
+        const data = consolationData[ticket];
+        modalIcon.textContent = '🎉';
         modalTitle.innerHTML = `සුභ පැතුම්!<br>Consolation Prize!`;
         modalDetails.innerHTML = `
           <div class="modal-rank">සැනසිලි ත්‍යාගය</div>
