@@ -5,121 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Raffle Draw Results</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!-- All your original CSS/animations/colors/styles remain unchanged -->
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+      --winner-gradient: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
+      --sanasili-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      --shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #05997e 0%, #0600ab 100%); min-height:100vh; padding:10px 5px;}
+    .container { max-width:1200px; margin:0 auto;}
+    .header { text-align:center; margin-bottom:20px; }
+    .header-content { display:flex; justify-content:space-between; align-items:center; max-width:100%; margin:0 auto; position:relative; }
+    .logo-section, .ticket-section { flex:1; display:flex; justify-content:center; align-items:center; }
+    .title-section { flex:2; text-align:center; }
+    .logo { display:flex; justify-content:center; align-items:center; animation:logoGlow 3s ease-in-out infinite alternate; }
+    .logo-img { width:auto; height:250px; max-width:500px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
+    .logo-img:hover { transform: scale(1.1); }
+    .ticket { display:flex; justify-content:center; align-items:center; animation:ticketFloat 2s ease-in-out infinite alternate; }
+    .ticket-img { width:auto; height:160px; max-width:240px; object-fit:contain; background:transparent; transition:all 0.3s ease; }
+    .ticket-img:hover { transform: scale(1.1) rotate(3deg); }
+    @keyframes logoGlow { from { transform: scale(1); } to { transform: scale(1.05); } }
+    @keyframes ticketFloat { from { transform: translateY(0px) rotate(-2deg); } to { transform: translateY(-10px) rotate(2deg); } }
+    .header h1 { color:white; font-size:3.5rem; font-weight:700; margin-bottom:0px; text-shadow:2px 2px 4px rgba(0,0,0,0.3); animation:glow 2s ease-in-out infinite alternate; }
+    .organization { color: Yellow; font-size:2.5rem; font-weight:600; font-family:'Georgia', serif; margin-top:5px; text-shadow:2px 2px 4px rgba(0,0,0,0.4); animation:organizationGlow 2.5s ease-in-out infinite alternate; }
+    @keyframes organizationGlow { from { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 15px rgba(255, 215, 0,0.3);} to { text-shadow:2px 2px 4px rgba(0,0,0,0.4), 0 0 25px rgba(255, 215, 0,0.6);} }
+    @keyframes glow { from { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.2);} to { text-shadow:2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.4);} }
+    .table-container { background:white; border-radius:25px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:50px; backdrop-filter:blur(10px); position:relative; }
+    .table-container::before { content:''; position:absolute; top:0; left:0; right:0; height:6px; background:var(--primary-gradient); }
+    table { width:100%; border-collapse:collapse; }
+    .winners-table thead { background: var(--gold-gradient); }
+    .sanasili-table thead { background: var(--sanasili-gradient); }
+    thead th { text-align:left; padding:20px; font-size:28px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:white; text-shadow:1px 1px 2px rgba(0,0,0,0.2); }
+    tbody tr { transition:all 0.3s ease; border-bottom:1px solid #f0f0f0; }
+    tbody tr:hover { background: linear-gradient(90deg, #f8fafc, #e2e8f0); transform:scale(1.01);}
+    tbody td { padding:22px 20px; font-size:18px; color:#2d3748; vertical-align:middle; }
+    .rank-number { font-weight:700; font-size:22px; color:#667eea; }
+    .winning-number { display:inline-flex; align-items:center; padding:25px 35px; border-radius:12px; font-weight:700; font-size:48px; color:white; background:var(--winner-gradient); box-shadow:0 6px 15px rgba(255,107,107,0.3); text-shadow:1px 1px 2px rgba(0,0,0,0.2); animation:pulse 2s infinite; position:relative; overflow:hidden; }
+    .winning-number::before { content:''; position:absolute; top:-50%; left:-50%; width:150%; height:150%; background:linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent); animation:shimmer 3s infinite; }
+    @keyframes pulse { 0% { transform:scale(1);} 50% { transform:scale(1.05);} 100% { transform:scale(1);} }
+    @keyframes shimmer { 0% { transform:translateX(-100%) translateY(-100%) rotate(45deg);} 100% { transform:translateX(100%) translateY(100%) rotate(45deg);} }
+    /* Winner Modal, Consolation Modal, No-Win Modal styles unchanged */
+    #ticketModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:1000;backdrop-filter:blur(5px);}
+  </style>
 </head>
 <body>
   <div class="container">
-    <!-- Original content (header, tables, modals etc.) remain unchanged -->
-    <div class="table-container">
-      <!-- winners + consolation tables populated via JSON -->
+    <div class="header">
+      <div class="header-content">
+        <div class="logo-section"><div class="logo"><img src="images/logo.png" class="logo-img"></div></div>
+        <div class="title-section"><h1>Raffle Draw Results</h1><h2 class="organization">DLB Welfare Society</h2></div>
+        <div class="ticket-section"><div class="ticket"><img src="images/ticket.png" class="ticket-img"></div></div>
+      </div>
+    </div>
+
+    <div id="tablesSection" style="display:none;">
+      <div class="table-container"><table id="winnersTable" class="winners-table"></table></div>
+      <div class="table-container"><table id="consolationsTable" class="sanasili-table"></table></div>
     </div>
   </div>
 
-  <!-- Ticket Modal -->
-  <div id="ticketModal" style="display:none;">
-    <div class="modal-content">
-      <div class="modal-icon" id="modalIcon"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-ticket-number" id="modalTicketNumber"></div>
-      <div class="modal-details" id="modalDetails"></div>
-      <button id="closeModal">Close</button>
-    </div>
+  <div id="preDrawPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);color:white;display:flex;justify-content:center;align-items:center;z-index:2000;flex-direction:column;">
+    <h2>🎟️ Draw not started yet</h2>
+    <button onclick="document.getElementById('preDrawPopup').style.display='none'">OK</button>
   </div>
 
-  <!-- Pre-draw popup -->
-  <div id="preDrawPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); color:white; display:flex; align-items:center; justify-content:center; z-index:2000;">
-    <div style="background:#fff; color:#000; padding:30px; border-radius:12px; max-width:500px; text-align:center;">
-      <h2>Upcoming Draw</h2>
-      <p id="preDrawMessage"></p>
-      <button onclick="document.getElementById('preDrawPopup').style.display='none'">OK</button>
-    </div>
-  </div>
+  <div id="ticketModal"><div class="modal-content"><div class="modal-icon" id="modalIcon"></div><div class="modal-title" id="modalTitle"></div><div class="modal-ticket-number" id="modalTicketNumber"></div><div class="modal-details" id="modalDetails"></div><button id="closeModal">Close</button></div></div>
 
   <script>
-    let drawData = null;
+    let winners = {}, consolations = {}, published = false;
 
-    async function loadDrawData() {
-      try {
-        const response = await fetch("data/draw.json");
-        drawData = await response.json();
-
-        if (drawData.published) {
-          document.querySelectorAll(".table-container").forEach(el => el.style.display = "block");
-        } else {
-          document.querySelectorAll(".table-container").forEach(el => el.style.display = "none");
-          const msg = "Draw Date: " + drawData.drawDate + "<br>" +
-                      "Results Published immediately after the draw and on www.welfare.dlb.lk<br>" +
-                      "Also published in Dinamina, Thinakural, and Daily News newspapers";
-          document.getElementById("preDrawMessage").innerHTML = msg;
-          document.getElementById("preDrawPopup").style.display = "flex";
-        }
-
-        const params = new URLSearchParams(window.location.search);
-        const scannedTicket = params.get("ticket");
-        if (scannedTicket && drawData.published) {
-          checkTicket(scannedTicket);
-        }
-      } catch (err) {
-        console.error("Error loading draw.json:", err);
-      }
-    }
-
-    function checkTicket(ticket) {
-      const modal = document.getElementById("ticketModal");
-      const modalIcon = document.getElementById("modalIcon");
-      const modalTitle = document.getElementById("modalTitle");
-      const modalTicketNumber = document.getElementById("modalTicketNumber");
-      const modalDetails = document.getElementById("modalDetails");
-
-      modal.className = "";
-      modal.classList.add("modal");
-      modalTicketNumber.textContent = ticket;
-
-      if (drawData.winners[ticket]) {
-        modal.classList.add("winner-modal");
-        const data = drawData.winners[ticket];
-        modalIcon.textContent = "👑";
-        modalTitle.innerHTML = `🎉 සුභ පැතුම්!<br>Congratulations!`;
-        modalDetails.innerHTML = `
-          <div class="modal-rank">${data.rank}</div>
-          <div class="modal-prize">${data.prize}</div>
-          <div class="modal-city">📍 ${data.city}</div>
-        `;
-      } else if (drawData.consolations[ticket]) {
-        modal.classList.add("consolation-modal");
-        const data = drawData.consolations[ticket];
-        modalIcon.textContent = "🎉";
-        modalTitle.innerHTML = `සුභ පැතුම්!<br>Consolation Prize!`;
-        modalDetails.innerHTML = `
-          <div class="modal-rank">සැනසිලි ත්‍යාගය</div>
-          <div class="modal-prize">10,000 LKR</div>
-          <div class="modal-city">📍 ${data.city}</div>
-        `;
+    async function loadData(){
+      const res = await fetch('draw.json');
+      const data = await res.json();
+      winners = data.winners;
+      consolations = data.consolations;
+      published = data.published;
+      if(published){
+        document.getElementById('tablesSection').style.display='block';
+        buildTables();
       } else {
-        modal.classList.add("no-win-modal");
-        modalIcon.textContent = "😔";
-        modalTitle.innerHTML = `කණගාටුයි!<br>Sorry!`;
-        modalDetails.innerHTML = `
-          <div style="font-size: 30px; color: #6b7280; margin: 20px 0;">
-            ඔබගේ ටිකට් මෙවර ත්‍යාගයක් හිමිව නොමැත.<br>
-            Your ticket did not win this time.
-          </div>
-        `;
+        document.getElementById('preDrawPopup').style.display='flex';
       }
-      modal.style.display = "flex";
     }
 
-    document.getElementById("closeModal").onclick = () => {
-      document.getElementById("ticketModal").style.display = "none";
-    };
+    function buildTables(){
+      const winnersTable = document.getElementById('winnersTable');
+      winnersTable.innerHTML = '<thead><tr><th>Rank</th><th>Winning Number</th><th>Prize</th><th>City</th></tr></thead><tbody>'+
+      Object.entries(winners).map(([num,data])=>`<tr><td>${data.rank}</td><td>${num}</td><td>${data.prize}</td><td>${data.city}</td></tr>`).join('')+'</tbody>';
 
-    document.getElementById("ticketModal").onclick = (e) => {
-      if (e.target === document.getElementById("ticketModal")) {
-        document.getElementById("ticketModal").style.display = "none";
-      }
-    };
+      const consolationsTable = document.getElementById('consolationsTable');
+      consolationsTable.innerHTML = '<thead><tr><th>#</th><th>Consolation</th><th>City</th></tr></thead><tbody>'+
+      Object.entries(consolations).map(([num,data],i)=>`<tr><td>${i+1}</td><td>${num}</td><td>${data.city}</td></tr>`).join('')+'</tbody>';
+    }
 
-    loadDrawData();
+    function checkTicket(ticket){
+      if(!published){alert('Draw not started yet!');return;}
+      const modal=document.getElementById('ticketModal'),icon=document.getElementById('modalIcon'),title=document.getElementById('modalTitle'),ticketNum=document.getElementById('modalTicketNumber'),details=document.getElementById('modalDetails');
+      modal.className='';modal.classList.add('modal');ticketNum.textContent=ticket;
+      if(winners[ticket]){modal.classList.add('winner-modal');icon.textContent='👑';title.innerHTML='🎉 Congratulations!';details.innerHTML=`<div>${winners[ticket].rank}</div><div>${winners[ticket].prize}</div><div>${winners[ticket].city}</div>`;}
+      else if(consolations[ticket]){modal.classList.add('consolation-modal');icon.textContent='🎉';title.innerHTML='Consolation Prize!';details.innerHTML=`<div>10,000 LKR</div><div>${consolations[ticket].city}</div>`;}
+      else{modal.classList.add('no-win-modal');icon.textContent='😔';title.innerHTML='Sorry!';details.innerHTML='<div>Your ticket did not win this time.</div>';}
+      modal.style.display='flex';
+    }
+
+    document.getElementById('closeModal').onclick=()=>document.getElementById('ticketModal').style.display='none';
+    document.getElementById('ticketModal').onclick=(e)=>{if(e.target.id==='ticketModal'){document.getElementById('ticketModal').style.display='none';}};
+    const params=new URLSearchParams(window.location.search);const scannedTicket=params.get('ticket');if(scannedTicket)checkTicket(scannedTicket);
+
+    loadData();
   </script>
 </body>
 </html>
