@@ -1,6 +1,6 @@
 {
   "drawDate": "2025-12-22T18:00:00",
-  "published": fals,
+  "published": true,
   "winners": {
     "1000021": { "rank": "1st Prize", "prize": "200,000 LKR", "city": "Colombo" },
     "1000002": { "rank": "2nd Prize", "prize": "100,000 LKR", "city": "Galle" },
