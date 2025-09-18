@@ -9,10 +9,15 @@
     "1000005": { "rank": "5th Prize", "prize": "25,000 LKR", "city": "Anuradhapura", "icon": "🏆" }
   },
   "consolations": {
-    "304050": { "city": "Kandy" },
-    "202020": { "city": "Matara" },
-    "303030": { "city": "Negombo" },
-    "404040": { "city": "Trincomalee" },
-    "505050": { "city": "Ratnapura" }
+    "1000006": { "city": "Kandy" },
+    "1000007": { "city": "Matara" },
+    "1000008": { "city": "Negombo" },
+    "1000009": { "city": "Trincomalee" },
+    "1000010": { "city": "Ratnapura" }
+    "1000011": { "city": "Kandy" },
+    "1000012": { "city": "Matara" },
+    "1000013": { "city": "Negombo" },
+    "1000014": { "city": "Trincomalee" },
+    "1000015": { "city": "Ratnapura" }
   }
 }
