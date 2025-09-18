@@ -2,11 +2,22 @@
   "drawDate": "2025-09-01T18:00:00",
   "published": true,
   "winners": {
-    "1000001": { "prize": "200,000 LKR", "rank": "1st Prize", "city": "Colombo" },
-    "1000002": { "prize": "100,000 LKR", "rank": "2nd Prize", "city": "Kandy" }
+    "1000021": { "rank": "1st Prize", "prize": "200,000 LKR", "city": "Colombo" },
+    "1000002": { "rank": "2nd Prize", "prize": "100,000 LKR", "city": "Galle" },
+    "1000003": { "rank": "3rd Prize", "prize": "75,000 LKR", "city": "Kurunegala" },
+    "1000004": { "rank": "4th Prize", "prize": "50,000 LKR", "city": "Jaffna" },
+    "1000005": { "rank": "5th Prize", "prize": "25,000 LKR", "city": "Anuradhapura" }
   },
   "consolations": {
-    "1000100": { "city": "Galle" },
-    "1000101": { "city": "Kurunegala" }
+    "304050": { "city": "Kandy" },
+    "202020": { "city": "Matara" },
+    "303030": { "city": "Negombo" },
+    "404040": { "city": "Trinco" },
+    "505050": { "city": "Ratnapura" },
+    "606060": { "city": "Gampaha" },
+    "707070": { "city": "Badulla" },
+    "808080": { "city": "Monaragala" },
+    "909090": { "city": "Polonnaruwa" },
+    "902233": { "city": "Hambantota" }
   }
 }
