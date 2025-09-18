@@ -79,7 +79,7 @@
   <script>
     async function loadDrawData() {
       try {
-        const response = await fetch("draw.json");
+        const response = await fetch("data/draw.json");
         const data = await response.json();
         const winnersBody = document.querySelector("#winnersTable tbody");
         const consolationBody = document.querySelector("#consolationTable tbody");
@@ -143,3 +143,4 @@
   </script>
 </body>
 </html>
+
