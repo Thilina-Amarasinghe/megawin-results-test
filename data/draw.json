@@ -1,5 +1,5 @@
 {
-  "published": false,
+  "published": true,
   "winners": {
     "1000001": { "rank": "1st Prize", "prize": "200,000 LKR", "city": "Colombo", "icon": "👑" },
     "1000002": { "rank": "2nd Prize", "prize": "100,000 LKR", "city": "Galle", "icon": "🥈" },
