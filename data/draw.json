@@ -1,25 +1,22 @@
 {
   "published": false,
   "winners": {
-    "1000001": { "rank": "1st Prize", "prize": "200,000 LKR", "city": "Colombo" },
-    "1000002": { "rank": "2nd Prize", "prize": "100,000 LKR", "city": "Galle" },
-    "1000003": { "rank": "3rd Prize", "prize": "75,000 LKR", "city": "Kurunegala" }
-    "1000004": { "rank": "3rd Prize", "prize": "50,000 LKR", "city": "Matara" }
-    "1000005": { "rank": "3rd Prize", "prize": "25,000 LKR", "city": "Kandy" }
+    "1000001": { "rank": "1st Prize", "prize": "200,000 LKR", "city": "Colombo", "icon": "👑" },
+    "1000002": { "rank": "2nd Prize", "prize": "100,000 LKR", "city": "Galle", "icon": "🥈" },
+    "1000003": { "rank": "3rd Prize", "prize": "75,000 LKR", "city": "Kurunegala", "icon": "🥉" },
+    "1000004": { "rank": "4th Prize", "prize": "50,000 LKR", "city": "Jaffna", "icon": "🏆" },
+    "1000005": { "rank": "5th Prize", "prize": "25,000 LKR", "city": "Anuradhapura", "icon": "🏆" }
   },
   "consolations": {
-    "1000006": { "city": "Kandy" },
-    "1000007": { "city": "Matara" },
-    "1000008": { "city": "Negombo" }
-    "1000009": { "city": "Kandy" },
-    "1000010": { "city": "Matara" },
-    "1000011": { "city": "Negombo" }
-    "1000012": { "city": "Matara" },
-    "1000013": { "city": "Negombo" }
-    "1000014": { "city": "Kandy" },
-    "1000015": { "city": "Matara" },
-   
-
-
+    "304050": { "city": "Kandy" },
+    "202020": { "city": "Matara" },
+    "303030": { "city": "Negombo" },
+    "404040": { "city": "Trinco" },
+    "505050": { "city": "Ratnapura" },
+    "606060": { "city": "Gampaha" },
+    "707070": { "city": "Badulla" },
+    "808080": { "city": "Monaragala" },
+    "909090": { "city": "Polonnaruwa" },
+    "902233": { "city": "Hambantota" }
   }
 }
