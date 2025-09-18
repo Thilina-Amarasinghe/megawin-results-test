@@ -1,11 +1,12 @@
 {
-  "published": true,
+  "drawDate": "2025-12-21T18:00:00",
+  "published": false,
   "winners": {
-    "1000001": { "rank": "1st Prize", "prize": "200,000 LKR", "city": "Colombo", "icon": "👑" },
-    "1000002": { "rank": "2nd Prize", "prize": "100,000 LKR", "city": "Galle", "icon": "🥈" },
-    "1000003": { "rank": "3rd Prize", "prize": "75,000 LKR", "city": "Kurunegala", "icon": "🥉" },
-    "1000004": { "rank": "4th Prize", "prize": "50,000 LKR", "city": "Jaffna", "icon": "🏆" },
-    "1000005": { "rank": "5th Prize", "prize": "25,000 LKR", "city": "Anuradhapura", "icon": "🏆" }
+    "1000021": { "rank": "1st Prize", "prize": "200,000 LKR", "city": "Colombo" },
+    "1000002": { "rank": "2nd Prize", "prize": "100,000 LKR", "city": "Galle" },
+    "1000003": { "rank": "3rd Prize", "prize": "75,000 LKR", "city": "Kurunegala" },
+    "1000004": { "rank": "4th Prize", "prize": "50,000 LKR", "city": "Jaffna" },
+    "1000005": { "rank": "5th Prize", "prize": "25,000 LKR", "city": "Anuradhapura" }
   },
   "consolations": {
     "304050": { "city": "Kandy" },
